@@ -1,0 +1,19 @@
+imports:
+    - { resource: "container/controllers.yml" }
+    - { resource: "container/serializer.yml" }
+    - { resource: "container/devtools.yml" }
+    - { resource: "container/listeners.yml" }
+    - { resource: "container/forms.yml" }
+
+parameters:
+ #   app.model.user.class: AppBundle\Entity\User
+
+services:
+    app.manager.email:
+        class: AppBundle\Manager\EMailManager
+        lazy: true
+        arguments:
+            - "@twig"
+            - "@mailer"
+            - "%app.email.sender%"
+            - "%app_name%"
