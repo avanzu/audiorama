@@ -1,0 +1,20 @@
+services:
+    app.hateoas.provider.abstract:
+        class: AppBundle\Hateoas\AbstractProvider
+        abstract: true
+        public: false
+        arguments:
+            - "@router"
+
+    app.hateoas.provider.pager:
+        class: AppBundle\Hateoas\PagerRelationProvider
+        parent: app.hateoas.provider.abstract
+        tags:
+            - { name: hateoas.provider }
+
+    app.hateoas.provider.audiobook:
+        class: AppBundle\Hateoas\AudiobookProvider
+        parent: app.hateoas.provider.abstract
+        tags:
+            - { name: hateoas.provider }
+

@@ -1,0 +1,20 @@
+{% block pre_card %}{% endblock %}
+{% set card_title %}
+    {% block card_title %}{% endblock %}
+{% endset %}
+<div class="panel{% if class is defined %} {{ class }}{% endif %}">
+
+    <div class="panel-heading">
+        {{ card_title }}
+    </div>
+
+    <div class="panel-body{% if textClass is defined %} {{ textClass }}{% endif %}">
+
+        {% block card_content %}{% endblock %}
+    </div>
+    <div class="panel-footer">
+        {% block card_action %} {% endblock %}
+    </div>
+</div>
+{% block post_card %}{% endblock %}
+

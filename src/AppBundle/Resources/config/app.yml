@@ -1,0 +1,31 @@
+app:
+    email:
+        address: noreply@restfully.org
+        alias: RESTFully
+    resources:
+        user:
+            model: AppBundle\Entity\User
+            manager: AppBundle\Manager\UserManager
+
+        audiobook:
+            model: AppBundle\Entity\Audiobook
+            manager: AppBundle\Manager\AudiobookManager
+            controller: AppBundle\Controller\AudiobookController
+
+        author:
+            model: AppBundle\Entity\Author
+        genre:
+            model: AppBundle\Entity\Genre
+        speaker:
+            model: AppBundle\Entity\Speaker
+        series:
+            model: AppBundle\Entity\Series
+
+        api.client:
+            model: AppBundle\Entity\Api\Client
+        api.auth_code:
+            model: AppBundle\Entity\Api\AuthCode
+        api.access_token:
+            model: AppBundle\Entity\Api\AccessToken
+        api.refresh_token:
+            model: AppBundle\Entity\Api\RefreshToken

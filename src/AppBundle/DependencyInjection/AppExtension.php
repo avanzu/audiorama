@@ -74,7 +74,8 @@ class AppExtension extends Extension
     protected function addControllerDefinition($key, $settings, ContainerBuilder $container)
     {
         $definition = new Definition($settings['controller'], [
-           new Reference(sprintf('app.manager.%s', $key))
+           new Reference(sprintf('app.manager.%s', $key)),
+           new Reference('fos_rest.view_handler')
         ]);
 
         if( is_a($settings['controller'], ContainerAwareInterface::class, true) ) {

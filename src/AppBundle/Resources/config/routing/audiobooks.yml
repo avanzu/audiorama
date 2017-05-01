@@ -1,0 +1,11 @@
+app_audiobooks_index:
+    path: /
+    defaults:
+        _controller: app.controller.audiobook:indexAction
+        _template: "@App/Audiobook/index.html.twig"
+
+app_audiobooks_show:
+    path: /{canonical}
+    defaults:
+        _controller: app.controller.audiobook:showAction
+        _template: "@App/Audiobook/show.html.twig"

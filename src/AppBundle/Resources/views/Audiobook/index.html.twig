@@ -1,0 +1,50 @@
+{% extends '@App/Layout/layout.html.twig' %}
+{% set _pager %}
+    {{ pagerfanta(result.pager, 'twitter_bootstrap3_translated') }}
+{% endset %}
+{% set _sorter %}
+
+    <div class="btn-group pull-right pagination">
+        <a href="#" class="btn btn-primary">Sort by {{ sorted|trans }}</a>
+        <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            {% for field in sortable %}
+                <li>
+                    <a href="{{ url('app_audiobooks_index', query|merge({'sort':field})) }}">
+                        {% if field == sorted %}
+                            <span class="glyphicon glyphicon-ok"></span> {% endif %}{{ field|trans }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endset %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-6">{{ _pager }}</div>
+        <div class="col-md-6">{{ _sorter }}</div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            {% for book in result %}
+
+                {% include '@App/Audiobook/_panel.html.twig' %}
+
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">{{ _pager }}</div>
+        <div class="col-md-6">{{ _sorter }}</div>
+    </div>
+
+
+{% endblock %}
+
+
+

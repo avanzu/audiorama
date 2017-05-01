@@ -24,7 +24,7 @@ class User implements AdvancedUserInterface, \Serializable
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
@@ -33,7 +33,7 @@ class User implements AdvancedUserInterface, \Serializable
      * @Assert\Length(min=5, minMessage="user.username.too_short")
      * @Assert\NotBlank(message="user.username.not_blank")
      */
-    private $username;
+    protected $username;
 
     /**
      * @var string
@@ -42,39 +42,39 @@ class User implements AdvancedUserInterface, \Serializable
      * @Assert\NotBlank(message="user.email.not_blank")
      * @Assert\Email(message="user.email.invalid")
      */
-    private $email;
+    protected $email;
 
     /**
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=255)
      */
-    private $password;
+    protected $password;
 
 
     /**
      * @ORM\Column(name="is_active", type="boolean")
      */
-    private $isActive = false;
+    protected $isActive = false;
 
     /**
      * @var string
      * @Assert\NotBlank(message="user.password.not_blank", groups={"registration"})
      */
-    private $plainPassword;
+    protected $plainPassword;
 
     /**
      * @var array
      *
      * @ORM\Column(name="roles", type="json_array", nullable=true)
      */
-    private $roles;
+    protected $roles;
 
     /**
      * @var string
      * @ORM\Column(name="token", type="string", nullable=true)
      */
-    private $token;
+    protected $token;
 
     /**
      * User constructor.
@@ -317,6 +317,15 @@ class User implements AdvancedUserInterface, \Serializable
 
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    function __toString()
+    {
+        return $this->username;
+    }
+
 
 }
 

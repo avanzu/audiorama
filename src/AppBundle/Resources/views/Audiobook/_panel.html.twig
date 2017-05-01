@@ -1,0 +1,12 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3><a href="{{ url('app_audiobooks_show', {"canonical": book.canonical}) }}">{{ book.title }}</a></h3>
+    </div>
+    <div class="panel-body">
+        {% if book.hasCoverArt %}
+            <img src="{{ book.coverImage }}" alt="{{ book.title }}" class="img-responsive img-circle" />
+        {% endif %}
+
+        {{ book.description }}
+    </div>
+</div>

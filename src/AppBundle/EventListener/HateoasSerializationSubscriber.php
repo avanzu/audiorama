@@ -88,7 +88,7 @@ class HateoasSerializationSubscriber implements EventSubscriberInterface, Contai
         $visitor = $event->getVisitor();
         $links   = [];
         foreach ($this->getProvidersFor($object) as $provider) {
-            $links = array_merge($links, (array) $provider->decorate($object));
+            $links = array_merge($links, (array) $provider->decorate($object, $this->getRequest()));
         }
 
         $context->startVisiting($object);
@@ -101,6 +101,14 @@ class HateoasSerializationSubscriber implements EventSubscriberInterface, Contai
      */
     public function onPreSerialize(PreSerializeEvent $event)
     {
+    }
+
+    /**
+     * @return null|\Symfony\Component\HttpFoundation\Request
+     */
+    protected function getRequest()
+    {
+        return $this->container->get('request_stack')->getCurrentRequest();
     }
 
     /** @inheritdoc */

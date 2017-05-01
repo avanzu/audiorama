@@ -1,0 +1,8 @@
+services:
+    app.pager.view.materialize:
+        class: WhiteOctober\PagerfantaBundle\View\TwitterBootstrap3TranslatedView
+        arguments:
+            - "@pagerfanta.view.default_translated"
+            - "@translator"
+        public: false
+        tags: [{ name: pagerfanta.view, alias: materialize }]

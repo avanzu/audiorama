@@ -4,6 +4,8 @@ imports:
     - { resource: "container/devtools.yml" }
     - { resource: "container/listeners.yml" }
     - { resource: "container/forms.yml" }
+    - { resource: "container/pagination.yml" }
+    - { resource: "container/hateoas.yml" }
 
 parameters:
  #   app.model.user.class: AppBundle\Entity\User

@@ -1,6 +1,8 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: "@AppBundle/Resources/config/app.yml" }
+    - { resource: "@AppBundle/Resources/config/elasticsearch.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -37,6 +39,11 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    form_themes:
+        - "bootstrap_3_layout.html.twig"
+    globals:
+        app_name: "%app_name%"
+        app_icon: "%app_icon%"
 
 # Doctrine Configuration
 doctrine:
@@ -103,20 +110,5 @@ fos_rest:
         decoders:
             json: fos_rest.decoder.jsontoform
 
-app:
-    email:
-        address: noreply@restfully.org
-        alias: RESTFully
-    resources:
-        user:
-            model: AppBundle\Entity\User
-            manager: AppBundle\Manager\UserManager
-        api.client:
-            model: AppBundle\Entity\Api\Client
-        api.auth_code:
-            model: AppBundle\Entity\Api\AuthCode
-        api.access_token:
-            model: AppBundle\Entity\Api\AccessToken
-        api.refresh_token:
-            model: AppBundle\Entity\Api\RefreshToken
-
+jms_serializer:
+    enable_short_alias: true

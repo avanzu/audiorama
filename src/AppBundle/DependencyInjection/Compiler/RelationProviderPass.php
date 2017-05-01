@@ -29,7 +29,7 @@ class RelationProviderPass implements CompilerPassInterface
         foreach(array_keys( $container->findTaggedServiceIds('hateoas.provider')) as $id ) {
             $providerDefinition = $container->getDefinition($id);
             $providerDefinition->setLazy(true);
-            $definition->addMethodCall('addProvider', new Reference($id));
+            $definition->addMethodCall('addProvider', [new Reference($id)]);
         }
     }
 }

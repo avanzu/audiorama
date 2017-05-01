@@ -9,6 +9,8 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Manager\ResourceManager;
+use FOS\RestBundle\View\View;
+use FOS\RestBundle\View\ViewHandlerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,13 +23,17 @@ class ResourceController extends Controller
      */
     protected $manager;
 
+    protected $viewHandler;
+
     /**
      * ResourceController constructor.
      *
-     * @param ResourceManager $manager
+     * @param ResourceManager      $manager
+     * @param ViewHandlerInterface $viewHandler
      */
-    public function __construct(ResourceManager $manager) {
-        $this->manager = $manager;
+    public function __construct(ResourceManager $manager, ViewHandlerInterface $viewHandler) {
+        $this->manager     = $manager;
+        $this->viewHandler = $viewHandler;
     }
 
     /**
@@ -88,6 +94,51 @@ class ResourceController extends Controller
 
         return true;
     }
+
+    /**
+     * @param         $data
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    protected function createResponse(Request $request, $data = [] )
+    {
+        $view = View::create($data)
+                    ->setFormat($this->getResponseFormat($request))
+            ;
+        if( $this instanceof TemplateAware ) {
+            $view->setTemplate($this->getTemplate());
+        }
+
+        return $this->viewHandler->handle($view);
+
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return string
+     */
+    protected function getResponseFormat(Request $request)
+    {
+        $formats = array_map(function($list){
+            $_ = explode('/', $list);
+            return end($_);
+        }, $request->getAcceptableContentTypes());
+
+        if( $format  = $request->get('_format') ){
+            array_unshift($formats, $format);
+        }
+
+        foreach($formats as $format) {
+            if( $this->viewHandler->supports($format)) {
+                return $format;
+            }
+        }
+
+        return 'html';
+    }
+
 
     /**
      * @param         $model

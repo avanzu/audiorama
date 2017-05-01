@@ -1,0 +1,20 @@
+fos_elastica:
+    clients:
+        default: { host: localhost, port: 9200 }
+    indexes:
+        app:
+            index_name: app_%kernel.environment%
+            types:
+                book:
+                    properties:
+                        title: ~
+                        description: ~
+                        series: ~
+                        authors: ~
+                        speakers: ~
+                        genre: ~
+                    persistence:
+                        driver: orm
+                        model: AppBundle\Entity\Audiobook
+                        provider: ~
+                        finder: ~

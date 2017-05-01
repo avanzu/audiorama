@@ -1,17 +1,51 @@
 {% extends "@App/Layout/layout.html.twig" %}
 
 {% block body %}
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
 
-    <form action="{{ path('app_security_login') }}" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="_username" value="{{ last_username }}" />
+    {% embed '@App/Partials/card.html.twig' with {"class" : "grey lighten-3 z-depth-3"} %}
+        {% block pre_card %}
+            <form action="{{ path('app_security_login') }}" method="post">
+        {% endblock %}
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="_password" />
+        {% block card_title %}{{ 'Sign in to %appName%'|trans({"%appName%" : app_name}) }}{% endblock %}
 
-        <button type="submit">login</button>
-    </form>
+        {% block card_content %}
+
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" placeholder="{{ 'Your username' }}"/>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="_password" placeholder="{{ 'Your password' }}" />
+            </div>
+
+            {% if error %}
+                <div class="row">
+                    <div class="col-sm-12 text-right">
+                        <a href="{{ url('app_reset_index') }}" >Reset password</a>
+                    </div>
+                </div>
+
+            {% endif %}
+
+        {% endblock %}
+
+        {% block card_action %}
+            <div class="text-right">
+                <button type="submit" class="btn btn-primary">login</button>
+
+            </div>
+        {% endblock %}
+
+        {% block post_card %}
+            </form>
+        {% endblock %}
+    {% endembed %}
+
 {% endblock %}

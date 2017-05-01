@@ -8,6 +8,8 @@
 namespace Components\Hateoas;
 
 
+use Symfony\Component\HttpFoundation\Request;
+
 interface RelationProviderInterface
 {
 
@@ -16,7 +18,7 @@ interface RelationProviderInterface
      *
      * @return array
      */
-    public function decorate($object);
+    public function decorate($object, Request $request = null);
 
     /**
      * @param $object

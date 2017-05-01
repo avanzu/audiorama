@@ -1,0 +1,13 @@
+app_api_audiobooks_index:
+    path: /
+    defaults:
+        _controller: app.controller.audiobook:indexAction
+        _template: "@App/Audiobook/index.html.twig"
+        _format: json
+
+app_api_audiobooks_show:
+    path: /{canonical}
+    defaults:
+        _controller: app.controller.audiobook:showAction
+        _template: "@App/Audiobook/show.html.twig"
+        _format: json

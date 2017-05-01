@@ -52,10 +52,11 @@ class RegistrationController extends ResourceController implements TemplateAware
 
         }
 
-        return $this->render($this->getTemplate(), [
-            'form'  => $form->createView(),
-            'model' => $user,
-        ]);
+        return $this->createResponse( $request, [
+             'form'  => $form->createView(),
+             'model' => $user,
+         ]);
+
     }
 
     /**

@@ -1,0 +1,3 @@
+app_api_audiobooks:
+    prefix: /books
+    resource: "audiobooks.yml"

@@ -2,6 +2,10 @@ app_homepage:
     path:     /
     defaults: { _controller: AppBundle:Default:index }
 
+app_audiobooks:
+    prefix: /books
+    resource: "routing/audiobooks.yml"
+
 app_account:
     prefix: /account
     resource: "routing/account.yml"
@@ -11,3 +15,7 @@ app_security:
 
 app_oauth_authorize:
     resource: "routing/api/oauth-authorize.yml"
+
+app_api:
+    prefix: /api
+    resource: "routing/api/main.yml"
