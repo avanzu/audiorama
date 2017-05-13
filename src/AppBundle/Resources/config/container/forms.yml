@@ -1,1 +1,12 @@
 services:
+    app.appendable.extension:
+        class: AppBundle\Form\Extension\AppendableTypeExtension
+        tags:
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
+
+    app.image_url.type:
+        class: AppBundle\Form\ImageUrlType
+        arguments:
+            - "%app.image_url.placeholder_image%"
+        tags:
+            - { name: form.type }

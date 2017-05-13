@@ -1,0 +1,23 @@
+app_speakers_index:
+    path: /
+    defaults:
+        _controller: app.controller.speaker:indexAction
+        _template: "@App/Speaker/index.html.twig"
+
+app_speakers_create:
+    path: /new
+    defaults:
+        _controller: app.controller.speaker:createAction
+        _template: "@App/Speaker/create.html.twig"
+
+app_speakers_edit:
+    path: /{canonical}/edit
+    defaults:
+        _controller: app.controller.speaker:editAction
+        _template: "@App/Speaker/edit.html.twig"
+
+app_speakers_show:
+    path: /{canonical}
+    defaults:
+        _controller: app.controller.speaker:showAction
+        _template: "@App/Speaker/show.html.twig"

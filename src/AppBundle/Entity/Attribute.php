@@ -16,7 +16,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *     "genre" = "AppBundle\Entity\Genre",
  *     "series" = "AppBundle\Entity\Series"
  * })
- * @ORM\Entity(repositoryClass="AppBundle\Doctrine\Extensions\EntityRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\AttributeRepository")
  */
 class Attribute
 {

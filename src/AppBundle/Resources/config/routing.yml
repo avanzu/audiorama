@@ -6,6 +6,14 @@ app_audiobooks:
     prefix: /books
     resource: "routing/audiobooks.yml"
 
+app_authors:
+    prefix: /authors
+    resource: "routing/authors.yml"
+
+app_speakers:
+    prefix: /speakers
+    resource: "routing/speakers.yml"
+
 app_account:
     prefix: /account
     resource: "routing/account.yml"

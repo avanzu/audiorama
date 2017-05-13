@@ -1,4 +1,5 @@
 app:
+    placeholder_image: sound-bars.svg
     email:
         address: noreply@restfully.org
         alias: RESTFully
@@ -14,10 +15,15 @@ app:
 
         author:
             model: AppBundle\Entity\Author
-        genre:
-            model: AppBundle\Entity\Genre
+            manager: AppBundle\Manager\PersonManager
+            controller: AppBundle\Controller\PersonController
         speaker:
             model: AppBundle\Entity\Speaker
+            manager: AppBundle\Manager\PersonManager
+            controller: AppBundle\Controller\PersonController
+
+        genre:
+            model: AppBundle\Entity\Genre
         series:
             model: AppBundle\Entity\Series
 

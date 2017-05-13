@@ -6,11 +6,9 @@
  */
 
 namespace AppBundle\Controller;
+use AppBundle\Form\AudiobookType;
 use AppBundle\Manager\AudiobookManager;
 use AppBundle\Traits\TemplateAware as TemplateTrait;
-use FOS\ElasticaBundle\Paginator\FantaPaginatorAdapter;
-use FOS\RestBundle\View\View;
-use Pagerfanta\Adapter\ElasticaAdapter;
 use Symfony\Component\HttpFoundation\Request;
 
 
@@ -50,6 +48,36 @@ class AudiobookController extends ResourceController implements TemplateAware
         return $this->createResponse($request, $responseData);
 
         // return $this->render($this->getTemplate(), );
+    }
+
+    public function createAction(Request $request)
+    {
+        $model = $this->getManager()->createNew();
+        $form  = $this->createForm(AudiobookType::class, $model);
+        if( $this->handleForm($request, $form, $model, AudiobookManager::INTENT_CREATE) ){
+            $this->getManager()->save($model);
+        }
+
+        return $this->createResponse($request, [
+            'form'  => $form->createView(),
+            'model' => $model,
+        ]);
+    }
+
+    public function editAction($canonical, Request $request)
+    {
+        $model = $this->getManager()->getByCanonical($canonical);
+        $this->throw404Unless($model);
+        $form = $this->createForm(AudiobookType::class, $model);
+
+        if( $this->handleForm($request, $form, $model, AudiobookManager::INTENT_UPDATE) ){
+            $this->getManager()->save($model);
+        }
+
+        return $this->createResponse($request, [
+            'form'  => $form->createView(),
+            'model' => $model,
+        ]);
     }
 
     public function showAction(Request $request)

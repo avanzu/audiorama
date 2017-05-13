@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>{% block title %}{{ app_name }}{% endblock %}</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
     {#
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel="stylesheet">
     #}
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-select.min.css') }}">
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/app.css ') }}" rel="stylesheet">
+
     {% block stylesheets %}{% endblock %}
 
     <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('apple-icon-57x57.png') }}">
@@ -21,7 +24,7 @@
     <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('apple-icon-144x144.png') }}">
     <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('apple-icon-152x152.png') }}">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-icon-180x180.png') }}">
-    <link rel="icon" type="image/png" sizes="192x192"  href="{{ asset('android-icon-192x192.png') }}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('android-icon-192x192.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicon-96x96.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}">
@@ -31,7 +34,7 @@
     <meta name="msapplication-TileImage" content="{{ asset('ms-icon-144x144.png') }}">
     <meta name="theme-color" content="#ffffff">
 
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
 
 </head>
 <body>
@@ -54,22 +57,52 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                <li>
-                    <a href="{{ url('app_security_logout') }}">{{ '%user% '|trans({"%user%" : user}) }}</a>
-                </li>
+                    <li>
+                        <a href="{{ url('app_audiobooks_index') }}">{{ 'audiobooks'|trans }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('app_speakers_index') }}">{{ 'speakers'|trans }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('app_authors_index') }}">{{ 'authors'|trans }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('app_security_logout') }}">{{ '%user% '|trans({"%user%" : app.user}) }}</a>
+                    </li>
                 {% else %}
-                <li>
-                    <a href="{{ url('app_registration_index') }}">{{ 'Register'|trans }}</a>
-                </li>
-                <li>
-                    <a href="{{ url('app_security_login') }}">{{ 'Sign in'|trans }}</a>
-                </li>
+                    <li>
+                        <a href="{{ url('app_registration_index') }}">{{ 'Register'|trans }}</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('app_security_login') }}">{{ 'Sign in'|trans }}</a>
+                    </li>
                 {% endif %}
             </ul>
+
         </div>
     </div>
 </nav>
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form role="search">
+                <div class="input-group">
+                    {% for name,val in app.request.query %}
+                        {% if name is not same as ('term') %}
+                            <input type="hidden" name="{{ name }}" value="{{ val }}">
+                        {% endif %}
+                    {% endfor %}
+                    <input type="text" class="form-control" placeholder="Search" name="term" value="{{ app.request.get('term') }}">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <div class="container">
     {% include '@App/Partials/flash-messages.html.twig' %}
 </div>
@@ -80,7 +113,13 @@
 
 <!--  Scripts-->
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="{{ asset('assets/js/bootstrap-select.min.js') }}"></script>
+<script src="{{ asset('assets/js/i18n/defaults-de_DE.min.js') }}"></script>
 <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-{% block javascripts %}{% endblock %}
+{% block javascripts %}
+    <script>
+        $(function(){ $('select').selectpicker(); });
+    </script>
+{% endblock %}
 </body>
 </html>

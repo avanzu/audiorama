@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -49,6 +50,32 @@ class Person
      * @Gedmo\Slug(fields={"firstName", "lastName"})
      */
     protected $canonical;
+
+    protected $books;
+
+    /**
+     * Person constructor.
+     */
+    public function __construct() {
+        $this->books = new ArrayCollection();
+    }
+
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getBooks()
+    {
+        return $this->books;
+    }
+
+    /**
+     * @return int
+     */
+    public function getOccurrences()
+    {
+        return $this->books->count();
+    }
 
     /**
      * Get id

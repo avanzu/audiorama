@@ -1,0 +1,23 @@
+app_authors_index:
+    path: /
+    defaults:
+        _controller: app.controller.author:indexAction
+        _template: "@App/Author/index.html.twig"
+
+app_authors_create:
+    path: /new
+    defaults:
+        _controller: app.controller.author:createAction
+        _template: "@App/Author/create.html.twig"
+
+app_authors_edit:
+    path: /{canonical}/edit
+    defaults:
+        _controller: app.controller.author:editAction
+        _template: "@App/Author/edit.html.twig"
+
+app_authors_show:
+    path: /{canonical}
+    defaults:
+        _controller: app.controller.author:showAction
+        _template: "@App/Author/show.html.twig"

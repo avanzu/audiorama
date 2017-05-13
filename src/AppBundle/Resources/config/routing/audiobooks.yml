@@ -4,6 +4,18 @@ app_audiobooks_index:
         _controller: app.controller.audiobook:indexAction
         _template: "@App/Audiobook/index.html.twig"
 
+app_audiobooks_create:
+    path: /new
+    defaults:
+        _controller: app.controller.audiobook:createAction
+        _template: "@App/Audiobook/create.html.twig"
+
+app_audiobooks_edit:
+    path: /{canonical}/edit
+    defaults:
+        _controller: app.controller.audiobook:editAction
+        _template: "@App/Audiobook/edit.html.twig"
+
 app_audiobooks_show:
     path: /{canonical}
     defaults:

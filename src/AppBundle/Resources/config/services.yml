@@ -6,6 +6,7 @@ imports:
     - { resource: "container/forms.yml" }
     - { resource: "container/pagination.yml" }
     - { resource: "container/hateoas.yml" }
+    - { resource: "container/twig.yml" }
 
 parameters:
  #   app.model.user.class: AppBundle\Entity\User

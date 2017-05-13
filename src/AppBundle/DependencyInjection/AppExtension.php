@@ -39,6 +39,7 @@ class AppExtension extends Extension
         $config = $this->loadConfiguration($configs, $container);
 
         $container->setParameter('app.email.sender', [$config['email']['address'] => $config['email']['alias']]);
+        $container->setParameter('app.image_url.placeholder_image', $config['placeholder_image']);
 
         $this->initializeClasses($config, $container);
 

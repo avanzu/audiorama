@@ -1,0 +1,111 @@
+.depth-1 {
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 1px 5px 0 rgba(0,0,0,0.12),0 3px 1px -2px rgba(0,0,0,0.2);
+}
+
+.depth-2 {
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14),0 1px 10px 0 rgba(0,0,0,0.12),0 2px 4px -1px rgba(0,0,0,0.3);
+}
+
+.depth-3 {
+    box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14),0 1px 18px 0 rgba(0,0,0,0.12),0 3px 5px -1px rgba(0,0,0,0.3);
+}
+
+.depth-4 {
+    box-shadow: 0 8px 10px 1px rgba(0,0,0,0.14),0 3px 14px 2px rgba(0,0,0,0.12),0 5px 5px -3px rgba(0,0,0,0.3)
+}
+
+.depth-5 {
+    box-shadow: 0 16px 24px 2px rgba(0,0,0,0.14),0 6px 30px 5px rgba(0,0,0,0.12),0 8px 10px -5px rgba(0,0,0,0.3)
+}
+
+.hover:hover, .hover:active {
+    transition: box-shadow .25s;
+    box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)
+}
+.hover {
+    transition: box-shadow .25s;
+    /* box-shadow: 0; */
+}
+
+.cover-image {
+    background: 50% 50% no-repeat;
+    background-size: cover;
+    height: 100%;
+    min-height: 350px;
+    float:left;
+    overflow : hidden;
+
+    -webkit-filter: grayscale(1);
+    -moz-filter: grayscale(1);
+    -o-filter: grayscale(1);
+    -ms-filter: grayscale(1);
+    filter: grayscale(1);
+    transition: filter .25s;
+
+}
+
+.hover:hover .cover-image, .hover:active .cover-image {
+    -webkit-filter: none;
+    -moz-filter: none;
+    -o-filter: none;
+    -ms-filter: none;
+    filter: none;
+    transition: filter .25s;
+}
+
+.audiobook .panel-body {
+    padding-top :0;
+    padding-bottom: 0;
+}
+
+.audiobook .panel-heading {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.audiobook .book-content {
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+}
+
+.audiobook .book-description {
+    height: 10em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.hover .book-description, .hover .book-description {
+    transition: all 1s;
+}
+
+.hover:hover .book-description, .hover:active .book-description {
+    min-height: 10em;
+    height : auto;
+    /* overflow : auto; */
+    transition: all 1s;
+}
+
+.book-tags .speakers p:before {
+
+    content: "\f001";
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+
+}
+
+.book-tags .authors p:before {
+    content: "\f040";
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+}
+
+.space-horizontal {
+    padding-left: 1em;
+    padding-right: 1em;
+}

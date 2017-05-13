@@ -9,8 +9,8 @@ namespace AppBundle\Manager;
 
 use AppBundle\Entity\Audiobook;
 use AppBundle\Pagination\Pager;
-use AppBundle\Repository\AudiobookRepository;
 use Elastica\Query;
+use AppBundle\Repository\AudiobookRepository;
 use Gedmo\Sluggable\Util\Urlizer;
 use Pagerfanta\Pagerfanta;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -75,6 +75,16 @@ class AudiobookManager extends ResourceManager implements ContainerAwareInterfac
             ;
 
         // return $this->getRepository()->findAllPagedSorted($page, $items, $sortBy, $sort);
+    }
+
+    /**
+     * @param $canonical
+     *
+     * @return null|object
+     */
+    public function getByCanonical($canonical)
+    {
+        return $this->getRepository()->findOneBy(['canonical' => $canonical]);
     }
 
 
