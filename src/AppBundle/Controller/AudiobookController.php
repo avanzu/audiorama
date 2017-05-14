@@ -10,6 +10,7 @@ use AppBundle\Form\AudiobookType;
 use AppBundle\Manager\AudiobookManager;
 use AppBundle\Traits\TemplateAware as TemplateTrait;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 
 /**
@@ -52,16 +53,19 @@ class AudiobookController extends ResourceController implements TemplateAware
 
     public function createAction(Request $request)
     {
-        $model = $this->getManager()->createNew();
-        $form  = $this->createForm(AudiobookType::class, $model);
-        if( $this->handleForm($request, $form, $model, AudiobookManager::INTENT_CREATE) ){
+        $model  = $this->getManager()->createNew();
+        $form   = $this->createForm(AudiobookType::class, $model);
+        $status =  $this->handleForm($request, $form, $model, AudiobookManager::INTENT_CREATE);
+
+        if(Response::HTTP_ACCEPTED === $status ){
             $this->getManager()->save($model);
+            $status = Response::HTTP_CREATED;
         }
 
         return $this->createResponse($request, [
             'form'  => $form->createView(),
             'model' => $model,
-        ]);
+        ], $status);
     }
 
     public function editAction($canonical, Request $request)
@@ -69,15 +73,16 @@ class AudiobookController extends ResourceController implements TemplateAware
         $model = $this->getManager()->getByCanonical($canonical);
         $this->throw404Unless($model);
         $form = $this->createForm(AudiobookType::class, $model);
-
-        if( $this->handleForm($request, $form, $model, AudiobookManager::INTENT_UPDATE) ){
+        $status = $status =  $this->handleForm($request, $form, $model, AudiobookManager::INTENT_UPDATE);
+        if( Response::HTTP_ACCEPTED === $status ){
             $this->getManager()->save($model);
+            return $this->redirectToRoute('app_api_audiobooks_show', ['canonical' => $model->getCanonical()]);
         }
 
         return $this->createResponse($request, [
             'form'  => $form->createView(),
             'model' => $model,
-        ]);
+        ], $status);
     }
 
     public function showAction(Request $request)

@@ -1,10 +1,7 @@
 {% extends '@App/Layout/layout.html.twig' %}
-{% set _pager %}
-    {{ include('@App/Partials/pager.html.twig') }}
-{% endset %}
-{% set _sorter %}
-{{ include('@App/Partials/sorter.html.twig') }}
-{% endset %}
+
+{% set _pager %}{{ include('@App/Partials/pager.html.twig') }}{% endset %}
+{% set _sorter %}{{ include('@App/Partials/sorter.html.twig') }}{% endset %}
 
 {% block body %}
 
@@ -20,8 +17,8 @@
                         {{ author }}
                     </div>
                     <div class="panel-footer">
-                        <a href="{{ url('app_audiobooks_index', author|speakers_term) }}">
-                        {{ 'Tritt %num% mal auf'|trans({"%num%" : author.occurrences }) }}
+                        <a href="{{ url('app_audiobooks_index', author|authors_term) }}">
+                            {{ 'Tritt %num% mal auf'|trans({"%num%" : author.occurrences }) }}
                         </a>
 
                     </div>

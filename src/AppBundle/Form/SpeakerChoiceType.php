@@ -26,6 +26,8 @@ class SpeakerChoiceType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
+           'appendable' => true,
+           'add_item_route' => 'app_speakers_append',
            'class'         => Speaker::class,
            'attr' => array('data-live-search' => true),
            'query_builder' => function (EntityRepository $repository) {

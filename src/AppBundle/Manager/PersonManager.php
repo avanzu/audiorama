@@ -45,4 +45,13 @@ class PersonManager extends ResourceManager
     {
         return $this->getEntityManager()->getClassMetadata($this->getClassName())->getFieldNames();
     }
+
+    /**
+     * @param $canonical
+     *
+     * @return null|object
+     */
+    public function getByCanonical($canonical) {
+        return $this->getRepository()->findOneBy(['canonical' => $canonical]);
+    }
 }

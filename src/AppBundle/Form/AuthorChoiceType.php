@@ -26,8 +26,10 @@ class AuthorChoiceType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-           'class'          => Author::class,
-           'attr'           => array('data-live-search' => true),
+           'appendable' => true,
+           'add_item_route' => 'app_authors_append',
+           'class'      => Author::class,
+           'attr'       => array('data-live-search' => true),
            'query_builder'  => function (EntityRepository $repository) {
                return $repository
                    ->createQueryBuilder('author')

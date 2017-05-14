@@ -109,3 +109,14 @@
     padding-left: 1em;
     padding-right: 1em;
 }
+
+.placeholder {
+    background-image: url('../img/placeholder.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.cover-image-container img {
+    max-height: 350px;
+}

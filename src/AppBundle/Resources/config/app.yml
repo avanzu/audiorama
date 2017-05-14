@@ -16,11 +16,11 @@ app:
         author:
             model: AppBundle\Entity\Author
             manager: AppBundle\Manager\PersonManager
-            controller: AppBundle\Controller\PersonController
+            controller: AppBundle\Controller\AuthorController
         speaker:
             model: AppBundle\Entity\Speaker
             manager: AppBundle\Manager\PersonManager
-            controller: AppBundle\Controller\PersonController
+            controller: AppBundle\Controller\SpeakerController
 
         genre:
             model: AppBundle\Entity\Genre

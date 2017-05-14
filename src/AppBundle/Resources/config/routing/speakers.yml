@@ -2,22 +2,39 @@ app_speakers_index:
     path: /
     defaults:
         _controller: app.controller.speaker:indexAction
-        _template: "@App/Speaker/index.html.twig"
+        _template: "@App/Author/index.html.twig"
 
 app_speakers_create:
     path: /new
     defaults:
         _controller: app.controller.speaker:createAction
-        _template: "@App/Speaker/create.html.twig"
+        _template: "@App/Author/create.html.twig"
+
+app_speakers_append:
+    path: /append
+    defaults:
+        _controller: app.controller.speaker:createAction
+        _template: "@App/Author/_form.html.twig"
+        _redirect: app_speakers_record
+
 
 app_speakers_edit:
     path: /{canonical}/edit
     defaults:
         _controller: app.controller.speaker:editAction
-        _template: "@App/Speaker/edit.html.twig"
+        _template: "@App/Author/edit.html.twig"
+
+app_speakers_record:
+    path: /{canonical}.json
+    defaults:
+        _controller: app.controller.speaker:showAction
+        _template: "@App/Author/show.html.twig"
+        _format: json
 
 app_speakers_show:
     path: /{canonical}
     defaults:
         _controller: app.controller.speaker:showAction
-        _template: "@App/Speaker/show.html.twig"
+        _template: "@App/Author/show.html.twig"
+
+

@@ -5,6 +5,9 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation\VirtualProperty;
+use JMS\Serializer\Annotation\Exclude;
 
 /**
  * Person
@@ -34,6 +37,7 @@ class Person
      * @var string
      *
      * @ORM\Column(name="firstName", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
+     * @Assert\NotBlank()
      */
     protected $firstName;
 
@@ -41,6 +45,7 @@ class Person
      * @var string
      *
      * @ORM\Column(name="lastName", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
+     * @Assert\NotBlank()
      */
     protected $lastName;
 
@@ -51,6 +56,10 @@ class Person
      */
     protected $canonical;
 
+    /**
+     * @var ArrayCollection
+     * @Exclude
+     */
     protected $books;
 
     /**
@@ -154,5 +163,21 @@ class Person
         return trim($this->firstName). ' '.trim($this->lastName);
     }
 
+    /**
+     * @return string
+     */
+    public function getCanonical()
+    {
+        return $this->canonical;
+    }
+
+    /**
+     * @return string
+     * @VirtualProperty
+     */
+    public function getDisplay()
+    {
+        return $this->__toString();
+    }
 }
 

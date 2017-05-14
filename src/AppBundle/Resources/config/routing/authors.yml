@@ -10,14 +10,31 @@ app_authors_create:
         _controller: app.controller.author:createAction
         _template: "@App/Author/create.html.twig"
 
+app_authors_append:
+    path: /append
+    defaults:
+        _controller: app.controller.author:createAction
+        _template: "@App/Author/_form.html.twig"
+        _redirect: app_authors_record
+
+
 app_authors_edit:
     path: /{canonical}/edit
     defaults:
         _controller: app.controller.author:editAction
         _template: "@App/Author/edit.html.twig"
 
+app_authors_record:
+    path: /{canonical}.json
+    defaults:
+        _controller: app.controller.author:showAction
+        _template: "@App/Author/show.html.twig"
+        _format: json
+
 app_authors_show:
     path: /{canonical}
     defaults:
         _controller: app.controller.author:showAction
         _template: "@App/Author/show.html.twig"
+
+

@@ -1,8 +1,15 @@
 {% extends 'bootstrap_3_layout.html.twig' %}
 
 {% block image_url_widget %}
-    <img src="{{ is_asset ? asset(image_url) : image_url }}" alt="" class="img-responsive">
-    {{ block('form_widget_simple') }}
+    <div data-image-container class="cover-image-container">
+
+        {{ block('form_widget_simple') }}
+
+        <div class="well placeholder">
+            <img src="{{ is_asset ? asset(image_url) : image_url }}" alt="" class="img-responsive center-block ">
+        </div>
+
+    </div>
 {% endblock %}
 
 {% block appendable %}
@@ -10,6 +17,7 @@
         {{ widget|raw }}
         <div class="input-group-btn">
             <button class="btn btn-primary"
+                    data-append-button
                     data-append-url="{{ add_item_route ? path(add_item_route, add_item_params) : '#' }}">
                 <i class="fa fa-plus"></i>
             </button>

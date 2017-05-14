@@ -14,6 +14,7 @@ use FOS\RestBundle\View\ViewHandlerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class ResourceController extends Controller
 {
@@ -85,23 +86,26 @@ class ResourceController extends Controller
         $form->handleRequest($request);
 
         if( ! $form->isSubmitted() ) {
-            return false;
+            return Response::HTTP_OK;
         }
 
         if( ! $form->isValid() ) {
-            return false;
+            return Response::HTTP_BAD_REQUEST;
         }
 
-        return true;
+        return Response::HTTP_ACCEPTED;
     }
 
     /**
-     * @param         $data
      * @param Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param array   $data
+     * @param int     $httpStatus
+     * @param array   $headers
+     *
+     * @return Response
      */
-    protected function createResponse(Request $request, $data = [] )
+    protected function createResponse(Request $request, $data = [], $httpStatus = Response::HTTP_OK )
     {
         $view = View::create($data)
                     ->setFormat($this->getResponseFormat($request))
@@ -110,8 +114,7 @@ class ResourceController extends Controller
             $view->setTemplate($this->getTemplate());
         }
 
-        return $this->viewHandler->handle($view);
-
+        return $this->viewHandler->handle($view)->setStatusCode($httpStatus);
     }
 
     /**
@@ -139,6 +142,20 @@ class ResourceController extends Controller
         return 'html';
     }
 
+    /**
+     * @param Request $request
+     * @param         $model
+     *
+     * @return bool|\Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    protected function getRedirectFromRequest(Request $request, $model)
+    {
+        if($route =  $request->get('_redirect') ) {
+            return $this->redirectToRoute($route, ['canonical' => $model->getCanonical()]);
+        }
+
+        return false;
+    }
 
     /**
      * @param         $model
