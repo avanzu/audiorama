@@ -1,33 +1,30 @@
 <?php
 /**
- * PersonController.php
+ * AttributeController.php
  * audiorama
- * Date: 13.05.17
+ * Date: 14.05.17
  */
 
 namespace AppBundle\Controller;
 
 
-use AppBundle\Form\AuthorType;
+use AppBundle\Manager\AttributeManager;
 use AppBundle\Manager\AudiobookManager;
-use AppBundle\Manager\PersonManager;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
-use AppBundle\Traits\TemplateAware as TemplateTrait;
 use Symfony\Component\HttpFoundation\Response;
+use AppBundle\Traits\TemplateAware as TemplateTrait;
 
 /**
- * Class PersonController
- * @method PersonManager getManager
+ * Class AttributeController
+ * @method AttributeManager getManager
  */
-class PersonController extends ResourceController implements TemplateAware
+class AttributeController extends ResourceController implements TemplateAware
 {
     use TemplateTrait;
 
-
     public function indexAction(Request $request)
     {
-        $pager = $this->getManager()->getCollectionByCriteria(
+        $pager = $this->getManager()->getAttributesByCriteria(
             $request->get('page', 1),
             $request->get('items', 10),
             $request->get('term', ''),
@@ -60,7 +57,7 @@ class PersonController extends ResourceController implements TemplateAware
             }
         }
 
-       return $this->createResponse($request, [
+        return $this->createResponse($request, [
             'form'  => $form->createView(),
             'model' => $model,
         ], $status);
@@ -80,5 +77,4 @@ class PersonController extends ResourceController implements TemplateAware
 
         return $this->createResponse($request, ['record' => $model]);
     }
-
 }

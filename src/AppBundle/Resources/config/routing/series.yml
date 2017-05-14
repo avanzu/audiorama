@@ -1,0 +1,40 @@
+app_series_index:
+    path: /
+    defaults:
+        _controller: app.controller.series:indexAction
+        _template: "@App/Series/index.html.twig"
+
+app_series_create:
+    path: /new
+    defaults:
+        _controller: app.controller.series:createAction
+        _template: "@App/Series/create.html.twig"
+
+app_series_append:
+    path: /append
+    defaults:
+        _controller: app.controller.series:createAction
+        _template: "@App/Series/_form.html.twig"
+        _redirect: app_series_record
+
+
+app_series_edit:
+    path: /{canonical}/edit
+    defaults:
+        _controller: app.controller.series:editAction
+        _template: "@App/Series/edit.html.twig"
+
+app_series_record:
+    path: /{canonical}.json
+    defaults:
+        _controller: app.controller.series:showAction
+        _template: "@App/Series/show.html.twig"
+        _format: json
+
+app_series_show:
+    path: /{canonical}
+    defaults:
+        _controller: app.controller.series:showAction
+        _template: "@App/Series/show.html.twig"
+
+

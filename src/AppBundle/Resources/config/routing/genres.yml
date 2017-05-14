@@ -1,0 +1,40 @@
+app_genres_index:
+    path: /
+    defaults:
+        _controller: app.controller.genre:indexAction
+        _template: "@App/Genre/index.html.twig"
+
+app_genres_create:
+    path: /new
+    defaults:
+        _controller: app.controller.genre:createAction
+        _template: "@App/Genre/create.html.twig"
+
+app_genres_append:
+    path: /append
+    defaults:
+        _controller: app.controller.genre:createAction
+        _template: "@App/Genre/_form.html.twig"
+        _redirect: app_genres_record
+
+
+app_genres_edit:
+    path: /{canonical}/edit
+    defaults:
+        _controller: app.controller.genre:editAction
+        _template: "@App/Genre/edit.html.twig"
+
+app_genres_record:
+    path: /{canonical}.json
+    defaults:
+        _controller: app.controller.genre:showAction
+        _template: "@App/Genre/show.html.twig"
+        _format: json
+
+app_genres_show:
+    path: /{canonical}
+    defaults:
+        _controller: app.controller.genre:showAction
+        _template: "@App/Genre/show.html.twig"
+
+

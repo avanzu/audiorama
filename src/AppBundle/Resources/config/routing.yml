@@ -14,6 +14,14 @@ app_speakers:
     prefix: /speakers
     resource: "routing/speakers.yml"
 
+app_series:
+    prefix: /series
+    resource: "routing/series.yml"
+
+app_genres:
+    prefix: /genres
+    resource: "routing/genres.yml"
+
 app_account:
     prefix: /account
     resource: "routing/account.yml"

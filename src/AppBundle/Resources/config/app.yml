@@ -15,17 +15,18 @@ app:
 
         author:
             model: AppBundle\Entity\Author
-            manager: AppBundle\Manager\PersonManager
             controller: AppBundle\Controller\AuthorController
         speaker:
             model: AppBundle\Entity\Speaker
-            manager: AppBundle\Manager\PersonManager
             controller: AppBundle\Controller\SpeakerController
 
         genre:
             model: AppBundle\Entity\Genre
+            controller: AppBundle\Controller\GenreController
+
         series:
             model: AppBundle\Entity\Series
+            controller: AppBundle\Controller\SeriesController
 
         api.client:
             model: AppBundle\Entity\Api\Client

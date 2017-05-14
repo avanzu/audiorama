@@ -12,12 +12,18 @@ use AppBundle\Manager\ResourceManager;
 use FOS\RestBundle\View\View;
 use FOS\RestBundle\View\ViewHandlerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class ResourceController extends Controller
 {
+
+    protected function getFormType()
+    {
+        return FormType::class;
+    }
 
     /**
      * @var ResourceManager

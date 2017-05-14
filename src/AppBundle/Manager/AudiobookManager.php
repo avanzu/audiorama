@@ -50,8 +50,6 @@ class AudiobookManager extends ResourceManager implements ContainerAwareInterfac
         });
     }
 
-
-
     /**
      * @param int    $page
      * @param int    $items
@@ -60,7 +58,7 @@ class AudiobookManager extends ResourceManager implements ContainerAwareInterfac
      *
      * @return Pager
      */
-    public function getBooksByCriteria($page = 1, $items = 10, $term = '', $sortBy = 'title', $sort = 'ASC')
+    public function getCollectionByCriteria($page = 1, $items = 10, $term = '', $sortBy = 'title', $sort = 'ASC')
     {
         $queryString  = $term ? new Query\QueryString($term) : null;
         $query = new Query($queryString);
@@ -76,17 +74,6 @@ class AudiobookManager extends ResourceManager implements ContainerAwareInterfac
 
         // return $this->getRepository()->findAllPagedSorted($page, $items, $sortBy, $sort);
     }
-
-    /**
-     * @param $canonical
-     *
-     * @return null|object
-     */
-    public function getByCanonical($canonical)
-    {
-        return $this->getRepository()->findOneBy(['canonical' => $canonical]);
-    }
-
 
     /**
      * @return array

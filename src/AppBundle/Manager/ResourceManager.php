@@ -8,8 +8,11 @@
 namespace AppBundle\Manager;
 
 
+use AppBundle\Pagination\Pager;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -119,6 +122,15 @@ class ResourceManager
     }
 
 
+    public function getCollectionByCriteria($page = 1, $items = 10, $term = '', $sortBy = '', $sort = 'ASC') {
+
+        $builder = $this->getRepository()->getBuilderForCriteria($term, $sortBy, $sort);
+        $pager   = new Pagerfanta(new DoctrineORMAdapter($builder, false));
+        $pager->setMaxPerPage($items)->setCurrentPage($page);
+        return new Pager($pager);
+
+    }
+
     /**
      * @param $model
      * @param $intent
@@ -182,6 +194,23 @@ class ResourceManager
     public function getEntityManager()
     {
         return $this->entityManager;
+    }
+
+    /**
+     * @return array
+     */
+    public function getSortableFields()
+    {
+        return $this->getEntityManager()->getClassMetadata($this->getClassName())->getFieldNames();
+    }
+
+    /**
+     * @param $canonical
+     *
+     * @return null|object
+     */
+    public function getByCanonical($canonical) {
+        return $this->getRepository()->findOneBy(['canonical' => $canonical]);
     }
 
 }

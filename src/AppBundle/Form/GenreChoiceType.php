@@ -24,6 +24,8 @@ class GenreChoiceType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
+            'appendable' => true,
+            'add_item_route' => 'app_genres_append',
             'class'         => Genre::class,
             'required'      => false,
             'empty_data'    => null,

@@ -1,0 +1,40 @@
+{% extends '@App/Layout/layout.html.twig' %}
+
+{% set _pager %}{{ include('@App/Partials/pager.html.twig') }}{% endset %}
+{% set _sorter %}{{ include('@App/Partials/sorter.html.twig') }}{% endset %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-md-8">{{ _pager }}</div>
+    <div class="col-md-4">{{ _sorter }}</div>
+</div>
+    <div class="row">
+        <div class="col-md-12">
+            {% for author in result %}
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        {{ author }}
+                    </div>
+                    <div class="panel-footer">
+                        {#
+                        <a href="{{ url('app_audiobooks_index', author|authors_term) }}">
+                            {{ 'Tritt %num% mal auf'|trans({"%num%" : author.occurrences }) }}
+                        </a>
+                        #}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">{{ _pager }}</div>
+        <div class="col-md-4">{{ _sorter }}</div>
+    </div>
+
+
+{% endblock %}
+
+
+

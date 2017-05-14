@@ -24,6 +24,8 @@ class SeriesChoiceType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
+            'appendable' => true,
+            'add_item_route' => 'app_series_append',
             'class'         => Series::class,
             'required'      => false,
             'empty_data'    => null,

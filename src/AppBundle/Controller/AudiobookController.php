@@ -21,6 +21,12 @@ class AudiobookController extends ResourceController implements TemplateAware
 {
     use TemplateTrait;
 
+    protected function getFormType()
+    {
+        return AudiobookType::class;
+    }
+
+
     /**
      * @param int     $page
      * @param Request $request
@@ -29,7 +35,7 @@ class AudiobookController extends ResourceController implements TemplateAware
      */
     public function indexAction( Request $request )
     {
-        $pager  = $this->getManager()->getBooksByCriteria(
+        $pager  = $this->getManager()->getCollectionByCriteria(
             $request->get('page', 1),
             $request->get('items', 10),
             $request->get('term', ''),
@@ -54,12 +60,15 @@ class AudiobookController extends ResourceController implements TemplateAware
     public function createAction(Request $request)
     {
         $model  = $this->getManager()->createNew();
-        $form   = $this->createForm(AudiobookType::class, $model);
+        $form   = $this->createForm($this->getFormType(), $model);
         $status =  $this->handleForm($request, $form, $model, AudiobookManager::INTENT_CREATE);
 
         if(Response::HTTP_ACCEPTED === $status ){
             $this->getManager()->save($model);
             $status = Response::HTTP_CREATED;
+            if( $response = $this->getRedirectFromRequest($request, $model)) {
+                return $response;
+            }
         }
 
         return $this->createResponse($request, [
@@ -72,11 +81,14 @@ class AudiobookController extends ResourceController implements TemplateAware
     {
         $model = $this->getManager()->getByCanonical($canonical);
         $this->throw404Unless($model);
-        $form = $this->createForm(AudiobookType::class, $model);
+        $form = $this->createForm($this->getFormType(), $model);
         $status = $status =  $this->handleForm($request, $form, $model, AudiobookManager::INTENT_UPDATE);
         if( Response::HTTP_ACCEPTED === $status ){
             $this->getManager()->save($model);
-            return $this->redirectToRoute('app_api_audiobooks_show', ['canonical' => $model->getCanonical()]);
+            $status = Response::HTTP_OK;
+            if( $response = $this->getRedirectFromRequest($request, $model)) {
+                return $response;
+            }
         }
 
         return $this->createResponse($request, [

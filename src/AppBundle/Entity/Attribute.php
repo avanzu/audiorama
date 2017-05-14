@@ -4,6 +4,9 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use JMS\Serializer\Annotation\VirtualProperty;
+use JMS\Serializer\Annotation\Exclude;
+
 
 /**
  * Attribute
@@ -108,6 +111,23 @@ class Attribute
         $this->description = $description;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCanonical()
+    {
+        return $this->canonical;
+    }
+
+    /**
+     * @return string
+     * @VirtualProperty
+     */
+    public function getDisplay()
+    {
+        return $this->__toString();
     }
 }
 
