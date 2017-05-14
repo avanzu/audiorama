@@ -57,50 +57,5 @@ class AudiobookController extends ResourceController implements TemplateAware
         // return $this->render($this->getTemplate(), );
     }
 
-    public function createAction(Request $request)
-    {
-        $model  = $this->getManager()->createNew();
-        $form   = $this->createForm($this->getFormType(), $model);
-        $status =  $this->handleForm($request, $form, $model, AudiobookManager::INTENT_CREATE);
-
-        if(Response::HTTP_ACCEPTED === $status ){
-            $this->getManager()->save($model);
-            $status = Response::HTTP_CREATED;
-            if( $response = $this->getRedirectFromRequest($request, $model)) {
-                return $response;
-            }
-        }
-
-        return $this->createResponse($request, [
-            'form'  => $form->createView(),
-            'model' => $model,
-        ], $status);
-    }
-
-    public function editAction($canonical, Request $request)
-    {
-        $model = $this->getManager()->getByCanonical($canonical);
-        $this->throw404Unless($model);
-        $form = $this->createForm($this->getFormType(), $model);
-        $status = $status =  $this->handleForm($request, $form, $model, AudiobookManager::INTENT_UPDATE);
-        if( Response::HTTP_ACCEPTED === $status ){
-            $this->getManager()->save($model);
-            $status = Response::HTTP_OK;
-            if( $response = $this->getRedirectFromRequest($request, $model)) {
-                return $response;
-            }
-        }
-
-        return $this->createResponse($request, [
-            'form'  => $form->createView(),
-            'model' => $model,
-        ], $status);
-    }
-
-    public function showAction(Request $request)
-    {
-
-
-    }
 
 }

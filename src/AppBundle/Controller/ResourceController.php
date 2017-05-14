@@ -19,6 +19,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ResourceController extends Controller
 {
+    use CrudTrait;
 
     protected function getFormType()
     {

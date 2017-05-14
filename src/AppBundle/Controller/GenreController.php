@@ -9,7 +9,6 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Form\GenreType;
-use AppBundle\Form\SeriesType;
 
 class GenreController extends AttributeController
 {
