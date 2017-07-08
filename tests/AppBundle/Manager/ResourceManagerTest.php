@@ -96,9 +96,6 @@ class ManagedTestObject {
         return $this->privateInternal;
     }
 
-
-
-
 }
 
 class ResourceManagerTest extends \PHPUnit_Framework_TestCase

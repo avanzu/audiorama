@@ -1,6 +1,10 @@
 app_homepage:
     path:     /
-    defaults: { _controller: AppBundle:Default:index }
+    defaults: { _controller: app.controller.dashboard:indexAction }
+
+app_dashboard:
+    prefix: /dashboard
+    resource: "routing/dashboard.yml"
 
 app_audiobooks:
     prefix: /books

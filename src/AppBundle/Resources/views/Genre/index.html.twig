@@ -11,17 +11,18 @@
 </div>
     <div class="row">
         <div class="col-md-12">
-            {% for author in result %}
+            {% for genre in result %}
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        {{ author }}
+                        {{ genre }}
                     </div>
                     <div class="panel-footer">
-                        {#
-                        <a href="{{ url('app_audiobooks_index', author|authors_term) }}">
-                            {{ 'Tritt %num% mal auf'|trans({"%num%" : author.occurrences }) }}
+
+
+                        <a href="{{ url('app_audiobooks_index', genre|genres_term) }}">
+                            {{ 'Tritt %num% mal auf'|trans({"%num%" : genre.occurrences }) }}
                         </a>
-                        #}
+
                     </div>
                 </div>
             {% endfor %}

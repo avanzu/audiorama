@@ -75,6 +75,11 @@ class AudiobookManager extends ResourceManager implements ContainerAwareInterfac
         // return $this->getRepository()->findAllPagedSorted($page, $items, $sortBy, $sort);
     }
 
+    public function getRecent($amount = 12)
+    {
+        return $this->getRepository()->findRecent($amount);
+    }
+
     /**
      * @return array
      */

@@ -2,7 +2,7 @@
 {% set card_title %}
     {% block card_title %}{% endblock %}
 {% endset %}
-<div class="panel{% if class is defined %} {{ class }}{% endif %}">
+<div class="panel{% if class is defined %} {{ class }}{% endif %}" id="{{ id|default(uid('panel-')) }}">
 
     <div class="panel-heading">
         {{ card_title }}

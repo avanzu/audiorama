@@ -1,0 +1,6 @@
+app_audiobooks_recent:
+    path: /audiobooks/recent
+    defaults:
+        _controller: app.controller.audiobook:dashboardAction
+        _template: "@App/Dashboard/audiobooks.html.twig"
+        

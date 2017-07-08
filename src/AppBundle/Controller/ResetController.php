@@ -13,6 +13,8 @@ use AppBundle\Manager\UserManager;
 use AppBundle\Traits\AutoLogin;
 use AppBundle\Traits\TemplateAware as TemplateTrait;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\HttpKernel;
 
 /**
  * Class ResetController
@@ -26,7 +28,7 @@ class ResetController extends ResourceController implements TemplateAware
     public function resetAction(Request $request)
     {
         $form = $this->createForm(UserLookupType::class, null, ['manager' => $this->getManager() ]);
-        if( $this->handleForm($request, $form) ) {
+        if( $this->handleForm($request, $form) === Response::HTTP_ACCEPTED ) {
             $this->getManager()->enableReset($form->get('user')->getData());
             $message = $this->trans('user.reset.initialized');
             $this->addFlash('success', $message);
@@ -44,7 +46,7 @@ class ResetController extends ResourceController implements TemplateAware
         $user = $this->getManager()->loadUserByToken($token);
         $this->throw404Unless($user);
         $form = $this->createForm(ResetPasswordType::class, $user);
-        if( $this->handleForm( $request, $form) ) {
+        if( $this->handleForm( $request, $form) === Response::HTTP_ACCEPTED ) {
             $this->getManager()->resetUser($user);
 
             $this->executeAutoLogin($user);

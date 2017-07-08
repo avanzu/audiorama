@@ -50,7 +50,7 @@
             </button>
 
             <a class="navbar-brand" href="{{ url('app_homepage') }}">
-                <img alt="{{ app_name }}" src="{{ asset('sound-bars.svg') }}" class="img-responsive" height="60" width="60">
+                <img alt="{{ app_name }}" src="{{ asset('sound-bars.svg') }}" class="img-responsive" height="40" width="40">
             </a>
         </div>
 
@@ -83,26 +83,10 @@
     </div>
 </nav>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <form role="search">
-                <div class="input-group">
-                    {% for name,val in app.request.query %}
-                        {% if name is not same as ('term') %}
-                            <input type="hidden" name="{{ name }}" value="{{ val }}">
-                        {% endif %}
-                    {% endfor %}
-                    <input type="text" class="form-control" placeholder="Search" name="term" value="{{ app.request.get('term') }}">
-                    <div class="input-group-btn">
-                        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+{% block search %}
+    {% include '@App/Partials/search-bar.html.twig' %}
+{% endblock %}
+
 <div class="container">
     {% include '@App/Partials/flash-messages.html.twig' %}
 </div>

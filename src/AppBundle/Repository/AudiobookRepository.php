@@ -8,6 +8,7 @@
 namespace AppBundle\Repository;
 
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\EntityRepository;
@@ -65,5 +66,20 @@ class AudiobookRepository extends EntityRepository
         $pager = new Pagerfanta(new DoctrineORMAdapter($builder, false));
         $pager->setCurrentPage($page)->setMaxPerPage($items);
         return $pager;
+    }
+
+    /**
+     * @param $amount
+     * @return ArrayCollection
+     */
+    public function findRecent($amount) {
+
+        $builder = $this->createQueryBuilder('audiobook')
+                        ->orderBy('audiobook.createdAt', 'desc')
+                        ->setMaxResults($amount)
+            ;
+
+        return new ArrayCollection($builder->getQuery()->getResult());
+
     }
 }

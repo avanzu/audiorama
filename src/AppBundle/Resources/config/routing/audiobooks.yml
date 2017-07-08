@@ -9,12 +9,14 @@ app_audiobooks_create:
     defaults:
         _controller: app.controller.audiobook:createAction
         _template: "@App/Audiobook/create.html.twig"
+        _redirect: app_audiobooks_show
 
 app_audiobooks_edit:
     path: /{canonical}/edit
     defaults:
         _controller: app.controller.audiobook:editAction
         _template: "@App/Audiobook/edit.html.twig"
+        _redirect: app_audiobooks_show
 
 app_audiobooks_show:
     path: /{canonical}

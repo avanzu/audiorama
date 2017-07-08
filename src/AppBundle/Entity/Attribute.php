@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use JMS\Serializer\Annotation\VirtualProperty;
@@ -52,6 +53,25 @@ class Attribute
      * @Gedmo\Slug(fields={"name"})
      */
     protected $canonical;
+
+    /**
+     * @var ArrayCollection
+     */
+    protected $books;
+
+    /**
+     * @var ArrayCollection|AttributeMeta[]
+     * @ORM\OneToMany(targetEntity="AttributeMeta", indexBy="name", mappedBy="attribute")
+     */
+    protected $meta;
+
+    /**
+     * Attribute constructor.
+     */
+    public function __construct() {
+        $this->books = new ArrayCollection();
+    }
+
 
     /**
      * Get id
@@ -128,6 +148,39 @@ class Attribute
     public function getDisplay()
     {
         return $this->__toString();
+    }
+
+    /**
+     * @return int
+     */
+    public function getOccurrences()
+    {
+        return $this->books->count();
+    }
+
+    /**
+     * @param $key
+     * @param $value
+     *
+     * @return $this
+     */
+    public function setMeta($key, $value)
+    {
+        $meta = new AttributeMeta($this);
+        $meta->setName($key)->setValue($value);
+        $this->meta->set($key, $meta);
+        return $this;
+    }
+
+    /**
+     * @param      $key
+     * @param null $default
+     *
+     * @return mixed|null
+     */
+    public function getMeta($key, $default = null)
+    {
+        return $this->meta->containsKey($key) ? $this->meta->get($key) : $default;
     }
 }
 

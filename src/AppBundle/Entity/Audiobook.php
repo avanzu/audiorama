@@ -84,7 +84,7 @@ class Audiobook implements ImageUrlProvider
     /**
      * @var \AppBundle\Entity\Genre
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Genre", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Genre", cascade={"persist"}, inversedBy="books")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="genre_id", referencedColumnName="id")
      * })
@@ -94,7 +94,7 @@ class Audiobook implements ImageUrlProvider
     /**
      * @var \AppBundle\Entity\Series
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Series", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Series", cascade={"persist"}, inversedBy="books")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="series_id", referencedColumnName="id")
      * })

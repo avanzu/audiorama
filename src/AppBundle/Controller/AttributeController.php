@@ -28,7 +28,7 @@ class AttributeController extends ResourceController implements TemplateAware
             $request->get('page', 1),
             $request->get('items', 10),
             $request->get('term', ''),
-            $request->get('sort', 'firstName'),
+            $request->get('sort', 'name'),
             $request->get('dir', 'ASC')
         )
         ;
@@ -37,7 +37,7 @@ class AttributeController extends ResourceController implements TemplateAware
             'result'   => $pager,
             'sortable' => $this->getManager()->getSortableFields(),
             'query'    => $request->query->all(),
-            'sorted'   => $request->get('sort', 'firstName')
+            'sorted'   => $request->get('sort', 'name')
         ];
 
         return $this->createResponse($request, $responseData);

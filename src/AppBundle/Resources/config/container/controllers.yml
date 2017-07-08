@@ -10,3 +10,8 @@ services:
     app.controller.resetting:
         class: AppBundle\Controller\ResetController
         parent: app.controller.user
+
+    app.controller.dashboard:
+        class: AppBundle\Controller\DashboardController
+        calls:
+            - [setContainer, ["@service_container"]]

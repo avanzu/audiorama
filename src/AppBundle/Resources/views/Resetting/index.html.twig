@@ -1,8 +1,18 @@
 {% extends '@App/Layout/layout.html.twig' %}
 {% block body %}
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button type="submit">Reset your password</button>
-    {{ form_end(form )}}
+    {% embed '@App/Partials/card.html.twig' %}
+
+    {% block pre_card %}{{ form_start(form) }}{% endblock %}
+        
+    {% block card_title %}{{ 'Reset your password'|trans }}{% endblock %}
+    {% block card_content %} {{ form_widget(form) }} {% endblock %}
+    {% block card_action %}
+        <button type="submit" class="btn btn-primary">{{ 'Reset your password'|trans }}</button>
+        {{ widget('cancel_button') }}
+    {% endblock %}
+        
+    {% block post_card %} {{ form_end(form )}}{% endblock %}
+        
+    {% endembed %}
 
 {% endblock %}

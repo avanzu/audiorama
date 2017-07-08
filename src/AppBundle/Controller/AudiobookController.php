@@ -27,8 +27,12 @@ class AudiobookController extends ResourceController implements TemplateAware
     }
 
 
+    public function dashboardAction(Request $request)
+    {
+        return $this->createResponse($request, ['records' => $this->getManager()->getRecent()] );
+    }
+
     /**
-     * @param int     $page
      * @param Request $request
      *
      * @return \Symfony\Component\HttpFoundation\Response
@@ -54,7 +58,6 @@ class AudiobookController extends ResourceController implements TemplateAware
 
         return $this->createResponse($request, $responseData);
 
-        // return $this->render($this->getTemplate(), );
     }
 
 

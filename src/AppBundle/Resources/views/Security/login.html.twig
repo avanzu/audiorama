@@ -1,8 +1,9 @@
 {% extends "@App/Layout/layout.html.twig" %}
-
+{% block search %}{% endblock %}
 {% block body %}
-
-    {% embed '@App/Partials/card.html.twig' with {"class" : "grey lighten-3 z-depth-3"} %}
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+    {% embed '@App/Partials/card.html.twig' with {"class" : "grey lighten-3 z-depth-3", "id" : "panel-login"} %}
         {% block pre_card %}
             <form action="{{ path('app_security_login') }}" method="post">
         {% endblock %}
@@ -47,5 +48,6 @@
             </form>
         {% endblock %}
     {% endembed %}
-
+    </div>
+</div>
 {% endblock %}

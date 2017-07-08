@@ -1,0 +1,19 @@
+{% extends '@App/Layout/layout.html.twig' %}
+
+{% block title %}{{ '%model% | %app%'|trans({"%model%" : record, "%app%": parent() }) }}{% endblock %}
+
+{% block search %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2 class="header">
+                    {{ record }}
+                </h2>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block body %}
+    {{ dump(record) }}
+{% endblock %}

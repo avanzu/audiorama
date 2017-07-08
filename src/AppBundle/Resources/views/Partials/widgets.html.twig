@@ -1,0 +1,4 @@
+{% block cancel_button %}
+    {% set route = app.session.get('_last_route')|default(url('app_homepage')) %}
+    <a href="{{ route }}" class="btn btn-default">{{ 'Cancel'|trans }}</a>
+{% endblock %}

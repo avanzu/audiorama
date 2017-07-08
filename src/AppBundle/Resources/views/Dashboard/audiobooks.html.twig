@@ -1,0 +1,13 @@
+<div class="panel panel-default dashboard-panel">
+    <div class="panel-body">
+        {% for book in records %}
+            <div class="hover ">
+                <div class="cover-image col-sm-6  " style="background-image: url({{ book.coverImage|default(asset('sound-bars.svg')) }})">
+                    <div class="description">
+                        {{ book.title }}
+                    </div>
+            </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
