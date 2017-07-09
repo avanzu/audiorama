@@ -38,6 +38,7 @@ class AppExtension extends \Twig_Extension
             new \Twig_SimpleFilter('authors_term', [$this, 'getAuthorsTerm']),
             new \Twig_SimpleFilter('genres_term', [$this, 'getGenresTerm']),
             new \Twig_SimpleFilter('series_term', [$this, 'getSeriesTerm']),
+            new \Twig_SimpleFilter('truncate', [$this, 'truncate']),
         ];
     }
 
@@ -53,6 +54,22 @@ class AppExtension extends \Twig_Extension
     {
         $random = mt_rand(0, (1 << ($length << 2)) - 1);
         return $prefix . dechex($random);
+    }
+
+
+    /**
+     * @param        $string
+     * @param        $length
+     * @param string $ellipsis
+     *
+     * @return string
+     */
+    public function truncate($string, $length, $ellipsis = ' [...]')
+    {
+        if( strlen($string) < $length)
+            return $string;
+
+        return substr($string, 0, strpos(wordwrap($string, $length), PHP_EOL, $length)) . $ellipsis;
     }
 
 

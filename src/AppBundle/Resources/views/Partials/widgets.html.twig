@@ -1,4 +1,48 @@
+{# ---------------------------------------------------------------------------------------------------- CANCEL BUTTON #}
 {% block cancel_button %}
     {% set route = app.session.get('_last_route')|default(url('app_homepage')) %}
     <a href="{{ route }}" class="btn btn-default">{{ 'Cancel'|trans }}</a>
 {% endblock %}
+
+{# ------------------------------------------------------------------------------------------------- SPEAKER LINKLIST #}
+{%- block speaker_linklist -%}
+    {% spaceless %}
+        
+        {% if speakers|default([])|length < 1 %}
+            {{ 'Unekannt'|trans }}
+        {% else %}
+            
+            {% set linked_speakers = [] %}
+            {% for speaker in speakers|default([]) %}
+                {%- set linked_speaker -%}
+                    <a href="{{ url('app_audiobooks_index', speaker|speakers_term) }}">{{ speaker }}</a>
+                {%- endset -%}
+                {% set linked_speakers = linked_speakers|merge([linked_speaker]) %}
+            {% endfor %}
+            
+            {{ linked_speakers|join(', ')|raw }}
+        {% endif %}
+    {% endspaceless %}
+{%- endblock -%}
+
+{# -------------------------------------------------------------------------------------------------- AUTHOR LINKLIST #}
+{%- block author_linklist -%}
+    {% spaceless %}
+        
+        {% if authors|default([])|length < 1 %}
+            {{ 'Unbekannt'|trans }}
+        {% else %}
+            
+            {% set linked_authors = [] %}
+            {% for author in authors|default([]) %}
+                {%- set linked_author -%}
+                    <a href="{{ url('app_audiobooks_index', author|authors_term) }}">{{ author }}</a>
+                {%- endset -%}
+                {% set linked_authors = linked_authors|merge([linked_author]) %}
+            {% endfor %}
+            
+            {{ linked_authors|join(', ')|raw }}
+        
+        {% endif %}
+    {% endspaceless %}
+{%- endblock -%}

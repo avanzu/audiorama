@@ -8,32 +8,11 @@
             </div>
             <div class="book-content col-sm-{{ book.hasCoverArt ? '8' : '12' }}">
                 <div class="book-description">
-                    {{ book.description|markdown }}
+                    {{ book.description|markdown|striptags|truncate(300) }}
                 </div>
-
-                <div class="book-tags">
-
-                    <div class="authors">
-                        <p>
-                        {% if book.authorNames|length < 1  %}
-                            <span class="label label-danger">{{ 'Unbekannt'|trans }}</span>
-                        {% endif %}
-                    {% for author in book.authorNames %}
-                        <span class="label label-info">{{ author }}</span>
-                    {% endfor %}
-                        </p>
-                    </div>
-                    <div class="speakers">
-                        <p>
-                        {% if book.speakerNames|length < 1  %}
-                            <span class="label label-danger">{{ 'Unbekannt'|trans }}</span>
-                        {% endif %}
-                    {% for speaker in book.speakerNames %}
-                        <span class="label label-primary">{{ speaker }}</span>
-                    {% endfor %}
-                        </p>
-                    </div>
-                </div>
+    
+                <hr class="divider">
+                {% include '@App/Audiobook/book-meta.html.twig' with {"record" : book } %}
             </div>
         </div>
     </div>

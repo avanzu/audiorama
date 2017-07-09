@@ -2,18 +2,68 @@
 
 {% block title %}{{ '%model% | %app%'|trans({"%model%" : record, "%app%": parent() }) }}{% endblock %}
 
-{% block search %}
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <h2 class="header">
-                    {{ record }}
-                </h2>
-            </div>
-        </div>
-    </div>
-{% endblock %}
+{% block search %}{% endblock %}
 
 {% block body %}
-    {{ dump(record) }}
+    
+    <article class="row book-detail">
+        <aside class="col-md-4">
+            <div class="container-3d">
+                <figure class="">
+                    <img class="depth-2 primary img-responsive" src="{{ record.coverImage|default(asset('sound-bars.svg')) }}" alt="{{ record }}">
+                </figure>
+            </div>
+    
+    
+            {#
+            <div class="panel panel-default grey">
+                <div class="panel-heading">
+                    {{ 'Autoren'|trans }}
+                </div>
+                <div class="panel-body">
+                    {{ record.authors|join(', ') }}
+                </div>
+            </div>
+    
+            <div class="panel panel-default grey">
+                <div class="panel-heading">
+                    {{ 'Sprecher'|trans }}
+                </div>
+                <div class="panel-body">
+                    {{ record.speakers|join(', ') }}
+                </div>
+            </div>
+            #}
+            
+        </aside>
+        <main class="col-md-8">
+            <div class="panel panel-default grey depth-2">
+                <div class="panel-heading">
+                    <h2>{{ record.title }}</h2>
+                </div>
+                <div class="panel-body">
+                    {{ record.description|markdown }}
+                </div>
+            </div>
+            
+            
+            <div class="panel panel-default grey">
+                <div class="panel-heading">
+                    {{'Metadaten'|trans}}
+                </div>
+                <div class="panel-body">
+    
+                    {% include '@App/Audiobook/book-meta.html.twig'  %}
+                    
+                    
+                </div>
+            </div>
+            
+            
+            
+        </main>
+    </article>
+    
+    
+    
 {% endblock %}

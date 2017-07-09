@@ -171,3 +171,29 @@ body {
 #search-bar {
    /* margin-bottom: 3em;*/
 }
+
+.container-3d {
+    /* overflow : hidden; */
+    max-height : 500px;
+    margin-bottom: 3em;
+}
+
+.book-detail {
+    margin-top: 3em;
+}
+
+.book-detail aside, .book-detail main {
+    -webkit-perspective: 1000;
+}
+
+.book-detail aside figure {
+    transition: all .5s;
+    transform: rotate3d(0, 1, 0, 15deg);
+
+}
+
+
+.book-detail aside figure:hover {
+    transition: all .5s;
+    transform: rotate3d(0, 1, 0, 0deg);
+}

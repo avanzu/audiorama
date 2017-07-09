@@ -1,0 +1,35 @@
+<div class="row">
+    
+    <div class="col-md-6">
+        
+        <dl class="dl-horizontal">
+            <dt>{{ '{1}Autor|]1,Inf]Autoren'|transchoice(record.authors|length) }}</dt>
+            <dd>
+                {{ widget('author_linklist', {"authors" : record.authors}) }}
+            </dd>
+            <dt>{{'Genre'|trans}}</dt>
+            <dd>
+                <a href="{{ url('app_audiobooks_index', record.genre|genres_term) }}">{{ record.genre }}</a>
+            </dd>
+            <dt>{{'Serie'|trans}}</dt>
+            <dd>
+                {% if record.series %}
+                    <a href="{{ url('app_audiobooks_index', record.series|series_term) }}">{{ record.series }}</a>
+                {% else %}
+                    {{ 'Keine Serie'|trans }}
+                {% endif %}
+            </dd>
+        </dl>
+    
+    </div>
+    <div class="col-md-6">
+        <dl class="dl-horizontal">
+            <dt>Sprecher</dt>
+            <dd>
+                {{ widget('speaker_linklist', {"speakers" : record.speakers }) }}
+            </dd>
+            <dt>Medium</dt>
+            <dd>{{ record.storageType }}</dd>
+        </dl>
+    </div>
+</div>
