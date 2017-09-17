@@ -3,6 +3,20 @@
 
     <div class="row">
         <div class="col-md-12">
+            {% embed '@App/Partials/card.html.twig' %}
+                {% block card_title %}{{ 'Statistik'|trans }}{% endblock %}
+                {% block card_content %}
+                    <dl class="dl-horizontal">
+                         {% for resource, nbItems in stats %}
+                             {% set _label = resource ~ '.label' %}
+                             <dt>{{ _label|trans }}</dt>
+                             <dd>{{ nbItems }}</dd>
+                         {% endfor %}
+                    </dl>
+                {% endblock %}
+            {% endembed %}
+        </div>
+        <div class="col-md-12">
             {{ render(path('app_audiobooks_recent')) }}
         </div>
         <div class="col-md-6">

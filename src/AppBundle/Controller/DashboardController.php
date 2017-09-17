@@ -22,7 +22,11 @@ class DashboardController extends Controller
             return $response;
         }
 
-        return $this->render('@App/Dashboard/index.html.twig');
+
+
+        return $this->render('@App/Dashboard/index.html.twig', [
+            'stats' => $this->get('app.manager.stats')->getPublicStats()
+        ]);
     }
 
     /**
@@ -32,7 +36,7 @@ class DashboardController extends Controller
      */
     protected function forwardIfTerm(Request $request)
     {
-        if( $request->get('term') ) {
+        if( $request->query->has('term') ) {
             return $this->redirectToRoute('app_audiobooks_index', $request->query->all());
         }
 

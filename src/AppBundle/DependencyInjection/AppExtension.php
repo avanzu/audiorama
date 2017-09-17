@@ -51,7 +51,8 @@ class AppExtension extends Extension
      */
     protected function initializeClasses($config, ContainerBuilder $container)
     {
-        $resourceNames = $container->hasParameter('app.resources') ? $container->getParameter('app.resources') : [];
+        $resourceNames   = $container->hasParameter('app.resources') ? $container->getParameter('app.resources') : [];
+        $publicResources = [];
 
         foreach($config['resources'] as $key => $settings) {
 
@@ -61,9 +62,16 @@ class AppExtension extends Extension
             $this->addControllerDefinition($key, $settings, $container);
 
             $resourceNames[$key] = $settings['model'];
+
+            if( $settings['private'] === true) {
+                continue;
+            }
+
+            $publicResources[$key] = sprintf('app.manager.%s', $key);
         }
 
         $container->setParameter('app.resources', $resourceNames);
+        $container->setParameter('app.resources.public', $publicResources);
 
     }
 

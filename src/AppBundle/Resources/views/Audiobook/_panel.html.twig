@@ -10,7 +10,7 @@
                 <div class="book-description">
                     {{ book.description|markdown|striptags|truncate(300) }}
                 </div>
-    
+                
                 <hr class="divider">
                 {% include '@App/Audiobook/book-meta.html.twig' with {"record" : book } %}
             </div>

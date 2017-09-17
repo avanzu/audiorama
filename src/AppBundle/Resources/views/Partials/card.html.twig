@@ -12,9 +12,11 @@
 
         {% block card_content %}{% endblock %}
     </div>
+    {% if block('card_action') %}
     <div class="panel-footer">
-        {% block card_action %} {% endblock %}
+        {% block card_action %}{% endblock %}
     </div>
+    {% endif %}
 </div>
 {% block post_card %}{% endblock %}
 

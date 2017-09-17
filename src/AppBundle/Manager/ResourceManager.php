@@ -121,6 +121,17 @@ class ResourceManager
         if( $flush ) $em->flush();
     }
 
+    /**
+     * @return int
+     */
+    public function getNumberOfRecords()
+    {
+        return $this->getRepository()
+                    ->createQueryBuilder('num')
+                    ->select('count(num)')
+                    ->getQuery()
+                    ->getSingleScalarResult();
+    }
 
     public function getCollectionByCriteria($page = 1, $items = 10, $term = '', $sortBy = '', $sort = 'ASC') {
 

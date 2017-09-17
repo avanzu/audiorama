@@ -30,9 +30,13 @@ app:
 
         api.client:
             model: AppBundle\Entity\Api\Client
+            private: true
         api.auth_code:
             model: AppBundle\Entity\Api\AuthCode
+            private: true
         api.access_token:
             model: AppBundle\Entity\Api\AccessToken
+            private: true
         api.refresh_token:
             model: AppBundle\Entity\Api\RefreshToken
+            private: true

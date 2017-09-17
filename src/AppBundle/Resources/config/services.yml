@@ -20,3 +20,8 @@ services:
             - "@mailer"
             - "%app.email.sender%"
             - "%app_name%"
+
+    app.manager.stats:
+        class: AppBundle\Manager\StatsManager
+        calls:
+            - [setContainer, ["@service_container"]]

@@ -50,6 +50,9 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('controller')
                             ->defaultValue(ResourceController::class)
                         ->end()
+                        ->scalarNode('private')
+                            ->defaultValue(false)
+                        ->end()
                     ->end()
             ->end()
             ;
