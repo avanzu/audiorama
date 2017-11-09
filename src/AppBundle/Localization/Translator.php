@@ -8,11 +8,12 @@
 namespace AppBundle\Localization;
 
 
+use Components\Localization\ILocalizer;
 use Components\Localization\ITranslator;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
-class Translator implements ITranslator
+class Translator implements ITranslator, ILocalizer
 {
     /**
      * @var ContainerInterface

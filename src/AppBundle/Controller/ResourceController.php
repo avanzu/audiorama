@@ -8,16 +8,17 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\Manager\ResourceManager;
 use Components\Infrastructure\Controller\ICommandRunner;
 use Components\Infrastructure\Presentation\IPresenter;
 use Components\Infrastructure\Presentation\TemplateView;
-use Components\Localization\ILocalizer;
-use Components\Resource\IManager;
 use Components\Infrastructure\Request\IRequest;
-use Components\Infrastructure\Response\IResponse;
 use Components\Infrastructure\Response\ContinueCommandResponse;
 use Components\Infrastructure\Response\ErrorResponse;
+use Components\Infrastructure\Response\IResponse;
 use Components\Interaction\Resource\GetCollection\GetCollectionRequest;
+use Components\Localization\ILocalizer;
+use Components\Resource\IManager;
 use FOS\RestBundle\View\View;
 use FOS\RestBundle\View\ViewHandlerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -33,69 +34,42 @@ class ResourceController extends Controller implements ICommandRunner, IPresente
 {
     use CrudTrait;
 
-    protected function getFormType()
-    {
-        return FormType::class;
-    }
-
     /**
      * @var IManager
      */
     protected $manager;
-
     /**
      * @var IPresenter
      */
     protected $presenter;
     /**
+     * @var ViewHandlerInterface
+     */
+    protected $viewHandler;
+    /**
      * @var ILocalizer
      */
     private $localizer;
-
-    protected $viewHandler;
 
     /**
      * ResourceController constructor.
      *
      * @param ResourceManager      $manager
+     * @param IPresenter           $presenter
+     * @param ILocalizer           $localizer
      * @param ViewHandlerInterface $viewHandler
      */
-    public function __construct(ResourceManager $manager, IPresenter $presenter, ILocalizer $localizer, ViewHandlerInterface $viewHandler) {
+    public function __construct(
+        ResourceManager $manager,
+        IPresenter $presenter,
+        ILocalizer $localizer,
+        ViewHandlerInterface $viewHandler
+    ) {
         $this->manager     = $manager;
         $this->viewHandler = $viewHandler;
-        $this->presenter = $presenter;
-        $this->localizer = $localizer;
+        $this->presenter   = $presenter;
+        $this->localizer   = $localizer;
     }
-
-    /**
-     * @return IPresenter
-     */
-    public function getPresenter()
-    {
-        return $this->presenter;
-    }
-
-    /**
-     * @return IManager
-     */
-    protected function getManager()
-    {
-        return $this->manager;
-    }
-
-
-    /**
-     * @param TemplateView $view
-     *
-     * @return Response
-     */
-    protected function createResponse(TemplateView $view)
-    {
-        return new Response($this->getPresenter()->show($view));
-    }
-
-
-
 
     /**
      * @param         $resource
@@ -113,12 +87,65 @@ class ResourceController extends Controller implements ICommandRunner, IPresente
         );
 
         $result = $this->executeCommand($command);
+
         return new Response($this->get('serializer')->serialize($result, 'json'));
 
     }
 
+    /**
+     * @param IRequest $request
+     *
+     * @return IResponse|ErrorResponse|\Exception
+     */
+    public function executeCommand(IRequest $request)
+    {
+        try {
+            return $this->get('app.command_bus')->execute($request);
+        } catch (ErrorResponse $error) {
+            return $error;
+        }
+    }
 
+    /**
+     * @param TemplateView $view
+     *
+     * @return string
+     */
+    public function show(TemplateView $view)
+    {
+        return $this->getPresenter()->show($view);
+    }
 
+    protected function getFormType()
+    {
+        return FormType::class;
+    }
+
+    /**
+     * @return IManager
+     */
+    protected function getManager()
+    {
+        return $this->manager;
+    }
+
+    /**
+     * @param TemplateView $view
+     *
+     * @return Response
+     */
+    protected function createResponseFromView(TemplateView $view)
+    {
+        return new Response($this->getPresenter()->show($view));
+    }
+
+    /**
+     * @return IPresenter
+     */
+    public function getPresenter()
+    {
+        return $this->presenter;
+    }
 
     /**
      * @param        $condition
@@ -128,13 +155,12 @@ class ResourceController extends Controller implements ICommandRunner, IPresente
      */
     protected function throw404Unless($condition, $message = 'Not Found')
     {
-        if( ! $condition ) {
+        if (!$condition) {
             throw $this->createNotFoundException($message);
         }
 
         return $condition;
     }
-
 
     /**
      * @param Request $request
@@ -148,11 +174,11 @@ class ResourceController extends Controller implements ICommandRunner, IPresente
     {
         $form->handleRequest($request);
 
-        if( ! $form->isSubmitted() ) {
+        if (!$form->isSubmitted()) {
             return Response::HTTP_OK;
         }
 
-        if( ! $form->isValid() ) {
+        if (!$form->isValid()) {
             return Response::HTTP_BAD_REQUEST;
         }
 
@@ -168,12 +194,16 @@ class ResourceController extends Controller implements ICommandRunner, IPresente
      *
      * @return Response
      */
-    protected function createResponse(Request $request, $data = [], $httpStatus = Response::HTTP_OK )
+    protected function createResponse($request, $data = [], $httpStatus = Response::HTTP_OK)
     {
+        if( $request instanceof TemplateView ) {
+            return $this->createResponseFromView($request);
+        }
+
         $view = View::create($data)
                     ->setFormat($this->getResponseFormat($request))
-            ;
-        if( $this instanceof TemplateAware ) {
+        ;
+        if ($this instanceof TemplateAware) {
             $view->setTemplate($this->getTemplate());
         }
 
@@ -187,17 +217,21 @@ class ResourceController extends Controller implements ICommandRunner, IPresente
      */
     protected function getResponseFormat(Request $request)
     {
-        $formats = array_map(function($list){
-            $_ = explode('/', $list);
-            return end($_);
-        }, $request->getAcceptableContentTypes());
+        $formats = array_map(
+            function ($list) {
+                $_ = explode('/', $list);
 
-        if( $format  = $request->get('_format') ){
+                return end($_);
+            },
+            $request->getAcceptableContentTypes()
+        );
+
+        if ($format = $request->get('_format')) {
             array_unshift($formats, $format);
         }
 
-        foreach($formats as $format) {
-            if( $this->viewHandler->supports($format)) {
+        foreach ($formats as $format) {
+            if ($this->viewHandler->supports($format)) {
                 return $format;
             }
         }
@@ -213,7 +247,7 @@ class ResourceController extends Controller implements ICommandRunner, IPresente
      */
     protected function getRedirectFromRequest(Request $request, $model)
     {
-        if($route =  $request->get('_redirect') ) {
+        if ($route = $request->get('_redirect')) {
             return $this->redirectToRoute($route, ['canonical' => $model->getCanonical()]);
         }
 
@@ -226,7 +260,8 @@ class ResourceController extends Controller implements ICommandRunner, IPresente
      * @param null    $intent
      */
     protected function preSaveModel($model, Request $request, $intent = null)
-    {}
+    {
+    }
 
     /**
      * @param         $model
@@ -234,8 +269,8 @@ class ResourceController extends Controller implements ICommandRunner, IPresente
      * @param null    $intent
      */
     protected function postSaveModel($model, Request $request, $intent = null)
-    {}
-
+    {
+    }
 
     /**
      * @param Form             $form
@@ -248,35 +283,11 @@ class ResourceController extends Controller implements ICommandRunner, IPresente
     {
         $form->handleRequest($request);
 
-        if( ! $form->isSubmitted() ) {
+        if (!$form->isSubmitted()) {
             return new ContinueCommandResponse();
         }
 
         return $this->executeCommand($form->getData());
 
-    }
-
-    /**
-     * @param IRequest $request
-     *
-     * @return IResponse|ErrorResponse|\Exception
-     */
-    public function executeCommand(IRequest $request)
-    {
-        try {
-            return $this->get('app.command_bus')->execute($request);
-        }  catch(ErrorResponse $error) {
-            return $error;
-        }
-    }
-
-    /**
-     * @param TemplateView $view
-     *
-     * @return string
-     */
-    public function show(TemplateView $view)
-    {
-        return $this->getPresenter()->show($view);
     }
 }

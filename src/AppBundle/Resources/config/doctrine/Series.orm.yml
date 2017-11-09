@@ -2,39 +2,6 @@ AppBundle\Entity\Series:
     type: entity
     table: books_series
     repositoryClass: AppBundle\Repository\AttributeRepository
-    id:
-        id:
-            type: integer
-            scale: 0
-            length: null
-            unique: false
-            nullable: false
-            precision: 0
-            id: true
-            generator:
-                strategy: IDENTITY
-    fields:
-        name:
-            type: string
-            scale: 0
-            length: 255
-            unique: false
-            nullable: false
-            precision: 0
-        description:
-            type: text
-            scale: 0
-            length: null
-            unique: false
-            nullable: true
-            precision: 0
-        canonical:
-            type: string
-            scale: 0
-            length: 255
-            unique: false
-            nullable: true
-            precision: 0
     oneToMany:
         books:
             targetEntity: AppBundle\Entity\Audiobook
@@ -42,14 +9,6 @@ AppBundle\Entity\Series:
                 - persist
             fetch: LAZY
             mappedBy: series
-            inversedBy: null
-            orphanRemoval: false
-            orderBy: null
-        meta:
-            targetEntity: AppBundle\Entity\AttributeMeta
-            cascade: {  }
-            fetch: LAZY
-            mappedBy: attribute
             inversedBy: null
             orphanRemoval: false
             orderBy: null

@@ -10,7 +10,7 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
-class SecurityController implements ITemplateAware
+class SecurityController implements TemplateAware
 {
     /**
      * @var AuthenticationUtils

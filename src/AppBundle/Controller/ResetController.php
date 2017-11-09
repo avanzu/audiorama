@@ -27,7 +27,7 @@ use Symfony\Component\HttpFoundation\Response;
  * Class ResetController
  * @method IUserManager getManager
  */
-class ResetController extends ResourceController implements ITemplateAware, IFlashing
+class ResetController extends ResourceController implements TemplateAware, IFlashing
 {
     use TemplateTrait,
         Flasher,

@@ -126,10 +126,8 @@ body {
 }
 
 .placeholder {
-    background-image: url('../img/placeholder.svg');
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
+    background      : url('../img/placeholder.svg') no-repeat center center;
+    background-size : cover;
 }
 
 .cover-image-container img {

@@ -49,6 +49,7 @@ AppBundle\Entity\Audiobook:
             unique: false
             nullable: false
             precision: 0
+            column: createdAt
         updatedAt:
             type: datetime
             scale: 0
@@ -56,6 +57,7 @@ AppBundle\Entity\Audiobook:
             unique: false
             nullable: false
             precision: 0
+            column: updatedAt
         coverImage:
             type: text
             scale: 0
@@ -63,6 +65,7 @@ AppBundle\Entity\Audiobook:
             unique: false
             nullable: true
             precision: 0
+            column: coverImage
         storageType:
             type: string
             scale: 0
@@ -101,7 +104,7 @@ AppBundle\Entity\Audiobook:
                 - all
             fetch: LAZY
             mappedBy: null
-            inversedBy: null
+            inversedBy: books
             joinTable:
                 name: books_audiobook_authors
                 schema: null
@@ -128,7 +131,7 @@ AppBundle\Entity\Audiobook:
                 - all
             fetch: LAZY
             mappedBy: null
-            inversedBy: null
+            inversedBy: books
             joinTable:
                 name: books_audiobook_speakers
                 schema: null

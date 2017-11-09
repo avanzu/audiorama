@@ -2,45 +2,12 @@ AppBundle\Entity\Speaker:
     type: entity
     table: books_speaker
     repositoryClass: AppBundle\Repository\PersonRepository
-    id:
-        id:
-            type: integer
-            scale: 0
-            length: null
-            unique: false
-            nullable: false
-            precision: 0
-            id: true
-            generator:
-                strategy: IDENTITY
-    fields:
-        firstName:
-            type: string
-            scale: 0
-            length: 255
-            unique: false
-            nullable: false
-            precision: 0
-        lastName:
-            type: string
-            scale: 0
-            length: 255
-            unique: false
-            nullable: false
-            precision: 0
-        canonical:
-            type: string
-            scale: 0
-            length: 255
-            unique: false
-            nullable: true
-            precision: 0
     manyToMany:
         books:
             targetEntity: AppBundle\Entity\Audiobook
             cascade: {  }
             fetch: LAZY
-            mappedBy: null
+            mappedBy: speakers
             inversedBy: null
             joinTable:
                 name: books_audiobook_speakers

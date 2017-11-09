@@ -8,7 +8,7 @@
 namespace AppBundle\Controller;
 
 
-interface ITemplateAware
+interface TemplateAware
 {
     public function setTemplate($name);
 

@@ -24,7 +24,7 @@ use Symfony\Component\HttpFoundation\Response;
  * Class RegistrationController
  * @method IUserManager getManager
  */
-class RegistrationController extends ResourceController implements ITemplateAware, IFlashing
+class RegistrationController extends ResourceController implements TemplateAware, IFlashing
 {
     use TemplateTrait,
         Flasher,
