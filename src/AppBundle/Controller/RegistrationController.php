@@ -8,79 +8,76 @@
 namespace AppBundle\Controller;
 
 
-use AppBundle\Entity\User;
-use AppBundle\Event\UserEvent;
-use AppBundle\Form\RegisterType;
-use AppBundle\Manager\UserManager;
+use AppBundle\Form\RegisterRequestType;
 use AppBundle\Traits\AutoLogin;
+use AppBundle\Traits\Flasher;
 use AppBundle\Traits\TemplateAware as TemplateTrait;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Components\Infrastructure\Presentation\TemplateView;
+use Components\Interaction\Users\Activate\ActivateRequest;
+use Components\Interaction\Users\Register\RegisterRequest;
+use Components\Resource\IUserManager;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class RegistrationController
- * @method UserManager getManager
+ * @method IUserManager getManager
  */
-class RegistrationController extends ResourceController implements TemplateAware
+class RegistrationController extends ResourceController implements ITemplateAware, IFlashing
 {
     use TemplateTrait,
+        Flasher,
         AutoLogin;
 
     /**
      * @param Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @return RedirectResponse|Response
      */
     public function registerAction(Request $request)
     {
-        $user = $this->getManager()->createNew();
-        $form = $this->createForm(RegisterType::class, $user);
 
-        if( $this->handleForm( $request, $form, $user ) ) {
-
-            $this->getManager()->registerUser($user);
-
-            $message = $this->trans(
-                'user.registration.success', [
-                    '%username%' => $user->getUsername(),
-                    '%email%'    => $user->getEmail()
-            ]);
-
-            $this->addFlash('success', $message);
+        $command = new RegisterRequest();
+        $form    = $this->createForm(RegisterRequestType::class);
+        $result  = $this->getInteractionResponse($form, $request, $command);
+        if ($result->isSuccessful()) {
+            $this->flash($result);
             return $this->redirectToRoute('app_homepage');
-
         }
 
-        return $this->createResponse( $request, [
-             'form'  => $form->createView(),
-             'model' => $user,
-         ]);
-
+        $view = new TemplateView($this->getTemplate(), [
+            'form'    => $form->createView(),
+            'command' => $command,
+            'result'  => $result,
+        ]);
+        return $this->createResponse($view);
     }
 
     /**
      * @param         $token
      * @param Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return RedirectResponse|Response
      */
-    public function activateAction($token, Request $request) {
+    public function activateAction($token, Request $request)
+    {
 
         $user = $this->getManager()->loadUserByToken($token);
+
         $this->throw404Unless($user);
-        $this->getManager()->activateUser($user);
 
-        $this->executeAutoLogin($user);
+        $command = new ActivateRequest($user);
+        $result  = $this->executeCommand($command);
+        if ($result->isSuccessful()) {
 
-        $message = $this->trans('user.activation.success', [
-            '%username%' => $user->getUsername(),
-        ]);
+            $this->executeAutoLogin($user);
+            $this->flash($result);
+            return $this->redirectToRoute('app_homepage');
 
-        $this->addFlash('success', $message);
+        }
 
-        return $this->redirectToRoute('app_homepage');
-
+        return new Response($result->getMessage(), $result->getStatus());
     }
 
 }

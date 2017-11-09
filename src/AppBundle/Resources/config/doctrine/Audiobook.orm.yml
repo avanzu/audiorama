@@ -1,0 +1,152 @@
+AppBundle\Entity\Audiobook:
+    type: entity
+    table: books_audiobook
+    repositoryClass: AppBundle\Repository\AudiobookRepository
+    id:
+        id:
+            type: integer
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        title:
+            type: string
+            scale: 0
+            length: 255
+            unique: false
+            nullable: false
+            precision: 0
+        canonical:
+            type: string
+            scale: 0
+            length: 255
+            unique: false
+            nullable: true
+            precision: 0
+        description:
+            type: text
+            scale: 0
+            length: null
+            unique: false
+            nullable: true
+            precision: 0
+        episode:
+            type: string
+            scale: 0
+            length: 10
+            unique: false
+            nullable: true
+            precision: 0
+        createdAt:
+            type: datetime
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+        updatedAt:
+            type: datetime
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+        coverImage:
+            type: text
+            scale: 0
+            length: null
+            unique: false
+            nullable: true
+            precision: 0
+        storageType:
+            type: string
+            scale: 0
+            length: null
+            unique: false
+            nullable: true
+            precision: 0
+            column: storage_type
+    manyToOne:
+        genre:
+            targetEntity: AppBundle\Entity\Genre
+            cascade:
+                - persist
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: books
+            joinColumns:
+                genre_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        series:
+            targetEntity: AppBundle\Entity\Series
+            cascade:
+                - persist
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: books
+            joinColumns:
+                series_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    manyToMany:
+        authors:
+            targetEntity: AppBundle\Entity\Author
+            cascade:
+                - all
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinTable:
+                name: books_audiobook_authors
+                schema: null
+                joinColumns:
+                    -
+                        name: audiobook_id
+                        unique: false
+                        nullable: true
+                        onDelete: CASCADE
+                        columnDefinition: null
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: author_id
+                        unique: false
+                        nullable: true
+                        onDelete: CASCADE
+                        columnDefinition: null
+                        referencedColumnName: id
+            orderBy: null
+        speakers:
+            targetEntity: AppBundle\Entity\Speaker
+            cascade:
+                - all
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinTable:
+                name: books_audiobook_speakers
+                schema: null
+                joinColumns:
+                    -
+                        name: audiobook_id
+                        unique: false
+                        nullable: true
+                        onDelete: CASCADE
+                        columnDefinition: null
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: speaker_id
+                        unique: false
+                        nullable: true
+                        onDelete: CASCADE
+                        columnDefinition: null
+                        referencedColumnName: id
+            orderBy: null
+    lifecycleCallbacks: {  }

@@ -11,6 +11,12 @@
 .idea
 
 # Cache, session files and logs (Symfony3)
+/app/config/parameters.yml
+/build/
+/phpunit.xml
+/phpunit.phar
+/var/*
+!/var/cache
 /var/cache/*
 /var/logs/*
 /var/sessions/*

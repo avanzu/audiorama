@@ -9,6 +9,8 @@ namespace AppBundle\Manager;
 
 
 use AppBundle\Entity\User;
+use Components\Interaction\Users\Register\RegisterResponse;
+use Components\Interaction\Users\ResetPassword\ResetPasswordResponse;
 
 class EMailManager
 {
@@ -66,10 +68,11 @@ class EMailManager
     }
 
     /**
-     * @param User $user
+     * @param RegisterResponse $response
      */
-    public function sendRegistrationMail(User $user)
+    public function sendRegistrationMail(RegisterResponse $response)
     {
+        $user    = $response->getResource();
         $message = $this->buildMessage('@App/EMail/register.html.twig', ['user' => $user, 'appName' => $this->appName]);
         $message->setTo($user->getEMail());
 
@@ -77,10 +80,12 @@ class EMailManager
     }
 
     /**
-     * @param User $user
+     * @param ResetPasswordResponse $response
+     *
      */
-    public function sendResetMail(User $user)
+    public function sendResetMail(ResetPasswordResponse $response)
     {
+        $user    = $response->getResource();
         $message = $this->buildMessage('@App/EMail/reset.html.twig', ['user' => $user, 'appName' => $this->appName]);
         $message->setTo($user->getEMail());
         $this->mailer->send($message);

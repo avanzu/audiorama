@@ -8,7 +8,7 @@
 namespace AppBundle\EventListener;
 
 
-use AppBundle\Controller\TemplateAware;
+use AppBundle\Controller\ITemplateAware;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
@@ -71,7 +71,7 @@ class KernelControllerSubscriber implements EventSubscriberInterface
      */
     protected function configureTemplate($controller, $request)
     {
-        if( ! $controller instanceof TemplateAware ) {
+        if( !$controller instanceof ITemplateAware ) {
             return;
         }
 

@@ -8,7 +8,8 @@
 namespace AppBundle\EventListener;
 
 
-use AppBundle\Controller\TemplateAware;
+use AppBundle\Controller\ITemplateAware;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\EventDispatcher\Tests\Debug\EventSubscriber;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,7 +18,7 @@ use Symfony\Component\HttpKernel\HttpKernel;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\HttpKernel\KernelEvents;
 
-class KernelControllerSubscriberTest extends \PHPUnit_Framework_TestCase
+class KernelControllerSubscriberTest extends TestCase
 {
 
     /**
@@ -35,7 +36,7 @@ class KernelControllerSubscriberTest extends \PHPUnit_Framework_TestCase
     public function itShouldAssignTheConfiguredTemplateToTemplateAwareControllers()
     {
         $kernel     = $this->prophesize(Kernel::class);
-        $controller = $this->prophesize(TemplateAware::class);
+        $controller = $this->prophesize(ITemplateAware::class);
         $controller->setTemplate('@Test/template.html.twig')->shouldBeCalled();
         $request    = new Request();
         $request->attributes->set('_template', '@Test/template.html.twig');

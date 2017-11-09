@@ -8,7 +8,16 @@
 namespace AppBundle\Controller;
 
 
-use AppBundle\Manager\ResourceManager;
+use Components\Infrastructure\Controller\ICommandRunner;
+use Components\Infrastructure\Presentation\IPresenter;
+use Components\Infrastructure\Presentation\TemplateView;
+use Components\Localization\ILocalizer;
+use Components\Resource\IManager;
+use Components\Infrastructure\Request\IRequest;
+use Components\Infrastructure\Response\IResponse;
+use Components\Infrastructure\Response\ContinueCommandResponse;
+use Components\Infrastructure\Response\ErrorResponse;
+use Components\Interaction\Resource\GetCollection\GetCollectionRequest;
 use FOS\RestBundle\View\View;
 use FOS\RestBundle\View\ViewHandlerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -17,7 +26,10 @@ use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class ResourceController extends Controller
+/**
+ * Class ResourceController
+ */
+class ResourceController extends Controller implements ICommandRunner, IPresenter
 {
     use CrudTrait;
 
@@ -27,9 +39,18 @@ class ResourceController extends Controller
     }
 
     /**
-     * @var ResourceManager
+     * @var IManager
      */
     protected $manager;
+
+    /**
+     * @var IPresenter
+     */
+    protected $presenter;
+    /**
+     * @var ILocalizer
+     */
+    private $localizer;
 
     protected $viewHandler;
 
@@ -39,18 +60,65 @@ class ResourceController extends Controller
      * @param ResourceManager      $manager
      * @param ViewHandlerInterface $viewHandler
      */
-    public function __construct(ResourceManager $manager, ViewHandlerInterface $viewHandler) {
+    public function __construct(ResourceManager $manager, IPresenter $presenter, ILocalizer $localizer, ViewHandlerInterface $viewHandler) {
         $this->manager     = $manager;
         $this->viewHandler = $viewHandler;
+        $this->presenter = $presenter;
+        $this->localizer = $localizer;
     }
 
     /**
-     * @return ResourceManager
+     * @return IPresenter
+     */
+    public function getPresenter()
+    {
+        return $this->presenter;
+    }
+
+    /**
+     * @return IManager
      */
     protected function getManager()
     {
         return $this->manager;
     }
+
+
+    /**
+     * @param TemplateView $view
+     *
+     * @return Response
+     */
+    protected function createResponse(TemplateView $view)
+    {
+        return new Response($this->getPresenter()->show($view));
+    }
+
+
+
+
+    /**
+     * @param         $resource
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function getCollectionAction($resource, Request $request)
+    {
+        $command = new GetCollectionRequest(
+            null,
+            $resource,
+            $request->get('limit', 10),
+            $request->get('offset')
+        );
+
+        $result = $this->executeCommand($command);
+        return new Response($this->get('serializer')->serialize($result, 'json'));
+
+    }
+
+
+
 
     /**
      * @param        $condition
@@ -67,18 +135,6 @@ class ResourceController extends Controller
         return $condition;
     }
 
-
-    /**
-     * @param         $model
-     * @param Request $request
-     * @param         $intent
-     */
-    protected function saveModel($model, Request $request, $intent)
-    {
-        $this->preSaveModel($model, $request, $intent);
-        $this->getManager()->save($model, true, $intent);
-        $this->postSaveModel($model, $request, $intent);
-    }
 
     /**
      * @param Request $request
@@ -180,33 +236,47 @@ class ResourceController extends Controller
     protected function postSaveModel($model, Request $request, $intent = null)
     {}
 
+
     /**
-     * Translator shorthand method
+     * @param Form             $form
+     * @param IRequest|Request $request
+     * @param IRequest         $command
      *
-     * @param        $token
-     * @param array  $args
-     * @param string $catalog
-     *
-     * @return string
+     * @return IResponse
      */
-    protected function trans($token, $args = [], $catalog = 'messages')
+    protected function getInteractionResponse(Form $form, Request $request, IRequest $command)
     {
-        return $this->get('translator')->trans($token, $args, $catalog);
+        $form->handleRequest($request);
+
+        if( ! $form->isSubmitted() ) {
+            return new ContinueCommandResponse();
+        }
+
+        return $this->executeCommand($form->getData());
+
     }
 
     /**
-     * Translator shorthand method
+     * @param IRequest $request
      *
-     * @param        $token
-     * @param        $num
-     * @param        $args
-     * @param string $catalog
+     * @return IResponse|ErrorResponse|\Exception
+     */
+    public function executeCommand(IRequest $request)
+    {
+        try {
+            return $this->get('app.command_bus')->execute($request);
+        }  catch(ErrorResponse $error) {
+            return $error;
+        }
+    }
+
+    /**
+     * @param TemplateView $view
      *
      * @return string
      */
-    protected function transChoice($token, $num, $args, $catalog = 'messages')
+    public function show(TemplateView $view)
     {
-        return $this->get('translator')->transChoice($token, $num, $args, $catalog);
+        return $this->getPresenter()->show($view);
     }
-
 }

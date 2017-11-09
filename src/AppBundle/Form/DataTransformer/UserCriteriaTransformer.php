@@ -8,24 +8,31 @@
 namespace AppBundle\Form\DataTransformer;
 
 
-use AppBundle\Manager\UserManager;
+use Components\Resource\IUserManager;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
+/**
+ * Class UserCriteriaTransformer
+ *
+ * Transforms the given username or email value to the corresponding user
+ */
 class UserCriteriaTransformer implements DataTransformerInterface
 {
 
     /**
-     * @var UserManager
+     * @var IUserManager
      */
     protected $userManager;
 
     /**
      * UserCriteriaTransformer constructor.
      *
-     * @param UserManager $userManager
+     * @param IUserManager $userManager
      */
-    public function __construct(UserManager $userManager) { $this->userManager = $userManager; }
+    public function __construct(IUserManager $userManager) {
+        $this->userManager = $userManager;
+    }
 
 
     /**

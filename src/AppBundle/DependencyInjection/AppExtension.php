@@ -8,6 +8,8 @@
 namespace AppBundle\DependencyInjection;
 
 
+use AppBundle\Controller\IFlashing;
+use Symfony\Component\BrowserKit\Response;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -43,7 +45,10 @@ class AppExtension extends Extension
 
         $this->initializeClasses($config, $container);
 
+
     }
+
+
 
     /**
      * @param                  $config
@@ -84,12 +89,18 @@ class AppExtension extends Extension
     {
         $definition = new Definition($settings['controller'], [
            new Reference(sprintf('app.manager.%s', $key)),
+           new Reference('app.presenter'),
+           new Reference('app.translator'),
            new Reference('fos_rest.view_handler')
         ]);
 
         if( is_a($settings['controller'], ContainerAwareInterface::class, true) ) {
             $definition->addMethodCall('setContainer', [new Reference('service_container')]);
         }
+        if( is_a($settings['controller'], IFlashing::class, true) ) {
+            $definition->addMethodCall('setFlasher', [new Reference('app.flash')]);
+        }
+
 
         $container->setDefinition(sprintf('app.controller.%s', $key), $definition);
     }
@@ -103,8 +114,9 @@ class AppExtension extends Extension
     {
         $definition          = new Definition($settings['manager'], [
             $settings['model'],
+            new Reference('app.repository.factory'),
+            new Reference('app.validator'),
             new Reference('doctrine.orm.entity_manager'),
-            new Reference('validator')
         ]);
 
         if( is_a($settings['manager'], ContainerAwareInterface::class, true) ) {
