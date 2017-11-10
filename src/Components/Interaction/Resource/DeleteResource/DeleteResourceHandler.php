@@ -5,7 +5,7 @@
  * Date: 16.09.17
  */
 
-namespace Components\Interaction\Resource\CreateResource;
+namespace Components\Interaction\Resource\DeleteResource;
 
 use Components\Infrastructure\Request\IRequest;
 use Components\Infrastructure\Response\ErrorResponse;
@@ -13,30 +13,28 @@ use Components\Infrastructure\Response\ValidationFailedResponse;
 use Components\Interaction\Resource\ResourceHandler;
 
 /**
- * Class CreateResourceHandler
+ * Class DeleteResourceHandler
  */
-class CreateResourceHandler extends ResourceHandler
+class DeleteResourceHandler extends ResourceHandler
 {
 
     /**
-     * @param CreateResourceRequest|IRequest $request
+     * @param DeleteResourceRequest|IRequest $request
      *
-     * @return CreateResourceResponse|ErrorResponse
+     * @return DeleteResourceResponse|ErrorResponse
      */
     public function handle(IRequest $request)
     {
-        $dao      = $request->getDao();
-        $resource = is_array($dao) ? $this->manager->createNew($dao) : $dao;
+        $resource = $request->getDao();
         $result   = $this->manager->validate($resource, ["Default", $request->getIntention()]);
-
         if (!$result->isValid()) {
             return new ValidationFailedResponse($result);
         }
 
         try {
-            $this->manager->save($resource);
+            $this->manager->remove($resource);
         } catch (\Exception $reason) {
-            return new ErrorResponse('Unable to store resource', 1, $reason);
+            return new ErrorResponse('Unable to delete resource', 1, $reason);
         }
 
         return $this->createResponse($request, $resource);
@@ -46,7 +44,7 @@ class CreateResourceHandler extends ResourceHandler
      * @param IRequest       $request
      * @param                $resource
      *
-     * @return CreateResourceResponse
+     * @return DeleteResourceResponse
      */
     protected function createResponse(IRequest $request, $resource)
     {
@@ -55,6 +53,6 @@ class CreateResourceHandler extends ResourceHandler
             return new $responseClass($resource, $request);
         }
 
-        return new CreateResourceResponse($resource, $request);
+        return new DeleteResourceResponse($resource, $request);
     }
 }

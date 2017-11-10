@@ -11,3 +11,4 @@ Components\Interaction\Users\CreateUser\CreateUserRequest:
                     - NotBlank: ~
                 roles:
                     - NotBlank: ~
+                isActive: ~

@@ -9,6 +9,7 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Manager\ResourceManager;
+use AppBundle\Presentation\ViewHandlerTemplate;
 use Components\Infrastructure\Controller\ICommandRunner;
 use Components\Infrastructure\Presentation\IPresenter;
 use Components\Infrastructure\Presentation\TemplateView;
@@ -136,7 +137,8 @@ class ResourceController extends Controller implements ICommandRunner, IPresente
      */
     protected function createResponseFromView(TemplateView $view)
     {
-        return new Response($this->getPresenter()->show($view));
+        $result  =$this->getPresenter()->show($view);
+        return $result instanceof Response ? $result : new Response($result);
     }
 
     /**
@@ -196,18 +198,18 @@ class ResourceController extends Controller implements ICommandRunner, IPresente
      */
     protected function createResponse($request, $data = [], $httpStatus = Response::HTTP_OK)
     {
-        if( $request instanceof TemplateView ) {
+        if( $request instanceof ViewHandlerTemplate ) {
             return $this->createResponseFromView($request);
         }
 
-        $view = View::create($data)
-                    ->setFormat($this->getResponseFormat($request))
-        ;
-        if ($this instanceof TemplateAware) {
-            $view->setTemplate($this->getTemplate());
-        }
-
-        return $this->viewHandler->handle($view)->setStatusCode($httpStatus);
+        return $this->createResponseFromView(
+            new ViewHandlerTemplate(
+                ($this instanceof TemplateAware) ? $this->getTemplate() : null,
+                $request,
+                $data,
+                $httpStatus
+            )
+        );
     }
 
     /**

@@ -16,6 +16,12 @@ use Components\Interaction\Resource\ResourceHandler;
 class GetCollectionHandler extends ResourceHandler
 {
 
+    protected function getResponseClassForRequest(IRequest $request)
+    {
+        $class = str_replace('Request', 'Response', get_class($request));
+        return (class_exists($class)) ? $class : GetCollectionResponse::class;
+    }
+
     /**
      * @param IRequest|GetCollectionRequest $request
      *
@@ -25,9 +31,19 @@ class GetCollectionHandler extends ResourceHandler
     {
         $manager    = $this->getManager();
         try {
-            $collection = $manager->getCollection($request->getLimit(), $request->getOffset(), $request->getCriteria());
 
-            return new GetCollectionResponse($collection, $request);
+            $collection = $manager->getCollectionByCriteria(
+                $request->getPage(),
+                $request->getLimit(),
+                $request->getTerm(),
+                $request->getSortBy(),
+                $request->getSortDir()
+            );
+
+            //$collection = $manager->getCollection($request->getLimit(), $request->getOffset(), $request->getCriteria());
+            $class = $this->getResponseClassForRequest($request);
+            return new $class($collection, $request, $manager->getSortableFields());
+
         } catch ( \Exception $e ) {
             return new ErrorResponse(
                 sprintf('%s.%s.error', $request->getResourceName(), $request->getIntention()),

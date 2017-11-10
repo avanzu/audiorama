@@ -14,15 +14,13 @@ use Components\Interaction\Resource\ResourceRequest;
 class GetCollectionRequest extends ResourceRequest
 {
 
-    protected $limit    = 10;
-    protected $offset   = 0;
-
+    protected $limit   = 10;
+    protected $page    = 1;
+    protected $term    = '';
+    protected $sortBy  = '';
+    protected $sortDir = 'ASC';
     protected $resourceName;
 
-    /**
-     * @var Criteria[]
-     */
-    protected $criteria = null;
 
     /**
      * GetCollectionRequest constructor.
@@ -30,25 +28,27 @@ class GetCollectionRequest extends ResourceRequest
      * @param null       $dao
      * @param            $resourceName
      * @param int        $limit
-     * @param int        $offset
-     * @param Criteria[] $criteria
+     * @param null       $page
+     * @param string     $term
+     * @param string     $sortBy
+     * @param string     $sortDir
+     *
+     * @internal param int $offset
+     * @internal param Criteria[] $criteria
      */
-    public function __construct($dao = null, $resourceName = null, $limit = 10, $offset = null, array $criteria = null)
-    {
+    public function __construct(
+        $dao = null,
+        $resourceName = null,
+        $limit = 10,
+        $page = null,
+        $term = '',
+        $sortBy = '',
+        $sortDir = 'ASC'
+    ) {
         $this->limit        = $limit;
-        $this->offset       = $offset;
         $this->resourceName = $resourceName;
-        $this->criteria     = $criteria;
         parent::__construct($dao);
     }
-
-    /**
-     * GetCollectionRequest constructor.
-     *
-     * @param $resourceName
-     */
-
-
 
     /**
      * @return int
@@ -73,42 +73,83 @@ class GetCollectionRequest extends ResourceRequest
     /**
      * @return int
      */
-    public function getOffset()
+    public function getPage()
     {
-        return $this->offset;
+        return $this->page;
     }
 
     /**
-     * @param int $offset
+     * @param int $page
      *
      * @return $this
      */
-    public function setOffset($offset)
+    public function setPage($page)
     {
-        $this->offset = $offset;
+        $this->page = $page;
 
         return $this;
     }
 
     /**
-     * @return Criteria[]
+     * @return string
      */
-    public function getCriteria()
+    public function getTerm()
     {
-        return $this->criteria;
+        return $this->term;
     }
 
     /**
-     * @param Criteria[] $criteria
+     * @param string $term
      *
      * @return $this
      */
-    public function setCriteria($criteria)
+    public function setTerm($term)
     {
-        $this->criteria = $criteria;
+        $this->term = $term;
 
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getSortBy()
+    {
+        return $this->sortBy;
+    }
+
+    /**
+     * @param string $sortBy
+     *
+     * @return $this
+     */
+    public function setSortBy($sortBy)
+    {
+        $this->sortBy = $sortBy;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSortDir()
+    {
+        return $this->sortDir;
+    }
+
+    /**
+     * @param string $sortDir
+     *
+     * @return $this
+     */
+    public function setSortDir($sortDir)
+    {
+        $this->sortDir = $sortDir;
+
+        return $this;
+    }
+
 
     /**
      * @return string
@@ -123,5 +164,12 @@ class GetCollectionRequest extends ResourceRequest
         return $this->resourceName;
     }
 
+    /**
+     * @return array
+     */
+    public function getQuery()
+    {
+        return $this->dao;
+    }
 
 }

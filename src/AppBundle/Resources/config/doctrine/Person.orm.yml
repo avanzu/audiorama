@@ -46,4 +46,7 @@ AppBundle\Entity\Person:
             unique: false
             nullable: true
             precision: 0
+            gedmo:
+                slug:
+                    fields: [firstName, lastName]
     lifecycleCallbacks: {  }

@@ -1,15 +1,15 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace Components\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Series
+ * Genre
  *
  */
-class Series extends Attribute
+class Genre extends Attribute
 {
     /**
      * @var ArrayCollection

@@ -1,8 +1,16 @@
 services:
-    app.presenter:
+    app.presenter.twig:
         class: AppBundle\Presentation\TwigPresenter
         arguments:
             - "@twig"
+
+    app.presenter.view:
+        class: AppBundle\Presentation\ViewHandlerPresenter
+        arguments:
+            - "@fos_rest.view_handler"
+
+    app.presenter:
+        alias: app.presenter.view
 
     app.flash:
         class: AppBundle\Presentation\ResultFlashBuilder

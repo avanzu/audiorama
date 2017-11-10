@@ -9,11 +9,10 @@ namespace AppBundle\Controller;
 
 use AppBundle\Form\ChangePasswordRequestType;
 use AppBundle\Form\ResetPasswordRequestType;
-use AppBundle\Presentation\ResultFlashBuilder;
+use AppBundle\Presentation\ViewHandlerTemplate;
 use AppBundle\Traits\AutoLogin;
 use AppBundle\Traits\Flasher;
 use AppBundle\Traits\TemplateAware as TemplateTrait;
-use Components\Infrastructure\Presentation\TemplateView;
 use Components\Infrastructure\Response\ContinueCommandResponse;
 use Components\Interaction\Users\ChangePassword\ChangePasswordRequest;
 use Components\Interaction\Users\ResetPassword\ResetPasswordRequest;
@@ -32,7 +31,6 @@ class ResetController extends ResourceController implements TemplateAware, IFlas
     use TemplateTrait,
         Flasher,
         AutoLogin;
-
 
 
     /**
@@ -56,15 +54,21 @@ class ResetController extends ResourceController implements TemplateAware, IFlas
         if ($result->isSuccessful()) {
 
             $this->flash($result);
+
             return $this->redirectToRoute('app_homepage');
 
         }
 
-        $view = new TemplateView($this->getTemplate(), [
-            'form'    => $form->createView(),
-            'command' => $command,
-            'result'  => $result,
-        ]);
+        $view = new ViewHandlerTemplate(
+            $this->getTemplate(),
+            $request,
+            [
+                'form'    => $form->createView(),
+                'command' => $command,
+                'result'  => $result,
+            ],
+            $result->getStatus()
+        );
 
         return $this->createResponse($view);
 
@@ -94,11 +98,17 @@ class ResetController extends ResourceController implements TemplateAware, IFlas
 
             return $this->redirectToRoute('app_homepage');
         }
-        $view = new TemplateView($this->getTemplate(), [
-            'form'    => $form->createView(),
-            'command' => $command,
-            'result'  => $result,
-        ]);
+        $view = new ViewHandlerTemplate(
+            $this->getTemplate(),
+            $request,
+            [
+                'form'    => $form->createView(),
+                'command' => $command,
+                'result'  => $result,
+                'user'    => $user,
+            ],
+            $result->getStatus()
+        );
 
         return $this->createResponse($view);
 

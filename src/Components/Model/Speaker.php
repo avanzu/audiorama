@@ -1,13 +1,15 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace Components\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Author
+ * Speaker
+ *
  */
-class Author extends Person
+class Speaker extends Person
 {
     /**
      * @var ArrayCollection
@@ -21,5 +23,6 @@ class Author extends Person
     {
         return $this->books;
     }
+
 }
 

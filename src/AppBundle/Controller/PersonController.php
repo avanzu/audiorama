@@ -28,6 +28,7 @@ class PersonController extends ResourceController implements TemplateAware
 
     public function indexAction(Request $request)
     {
+
         $pager = $this->getManager()->getCollectionByCriteria(
             $request->get('page', 1),
             $request->get('items', 10),

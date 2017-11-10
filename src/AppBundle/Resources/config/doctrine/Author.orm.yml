@@ -1,6 +1,6 @@
 AppBundle\Entity\Author:
     type: entity
-    table: books_author
+    # table: books_author
     repositoryClass: AppBundle\Repository\PersonRepository
     manyToMany:
         books:

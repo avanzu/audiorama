@@ -14,6 +14,7 @@ class TemplateView
 
     protected $params = [];
 
+
     /**
      * TemplateView constructor.
      *
@@ -41,6 +42,5 @@ class TemplateView
     {
         return $this->params;
     }
-
 
 }

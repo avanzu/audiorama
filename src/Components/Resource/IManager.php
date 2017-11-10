@@ -65,6 +65,22 @@ interface IManager
     public function getCollection($limit, $offset = 0, $criteria = null);
 
     /**
+     * @param int    $page
+     * @param int    $items
+     * @param string $term
+     * @param string $sortBy
+     * @param string $sort
+     *
+     * @return mixed
+     */
+    public function getCollectionByCriteria($page = 1, $items = 10, $term = '', $sortBy = '', $sort = 'ASC');
+
+    /**
+     * @return array
+     */
+    public function getSortableFields();
+
+    /**
      * @return IRepository
      */
     public function getRepository();

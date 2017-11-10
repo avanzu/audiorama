@@ -16,6 +16,7 @@ app:
         author:
             model: AppBundle\Entity\Author
             controller: AppBundle\Controller\AuthorController
+
         speaker:
             model: AppBundle\Entity\Speaker
             controller: AppBundle\Controller\SpeakerController

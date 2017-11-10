@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace Components\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -12,7 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Series extends Attribute
 {
     /**
-     * @var ArrayCollection
      */
     protected $books;
 }

@@ -54,7 +54,8 @@ class AppUserCreateCommand extends ContainerAwareCommand
                     'email'         => $email,
                     'plainPassword' => $password,
                     'roles'         => $roles,
-                'isActive'      => true]
+                    'isActive'      => true
+                ]
             );
 
         try {

@@ -46,6 +46,9 @@ AppBundle\Entity\Attribute:
             unique: false
             nullable: true
             precision: 0
+            gedmo:
+                slug:
+                    fields: [name]
     oneToMany:
         meta:
             targetEntity: AppBundle\Entity\AttributeMeta

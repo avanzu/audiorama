@@ -47,7 +47,7 @@ class ValidatingCommandBus implements ICommandBus
     {
         $result = $this->validator->validate($request);
         if( ! $result->isValid() ) {
-            return new ValidationFailedResponse($result);
+            throw new ValidationFailedResponse($result);
         }
 
         return $this->bus->execute($request);

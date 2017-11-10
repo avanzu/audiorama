@@ -9,10 +9,10 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\Form\RegisterRequestType;
+use AppBundle\Presentation\ViewHandlerTemplate;
 use AppBundle\Traits\AutoLogin;
 use AppBundle\Traits\Flasher;
 use AppBundle\Traits\TemplateAware as TemplateTrait;
-use Components\Infrastructure\Presentation\TemplateView;
 use Components\Interaction\Users\Activate\ActivateRequest;
 use Components\Interaction\Users\Register\RegisterRequest;
 use Components\Resource\IUserManager;
@@ -43,14 +43,21 @@ class RegistrationController extends ResourceController implements TemplateAware
         $result  = $this->getInteractionResponse($form, $request, $command);
         if ($result->isSuccessful()) {
             $this->flash($result);
+
             return $this->redirectToRoute('app_homepage');
         }
 
-        $view = new TemplateView($this->getTemplate(), [
-            'form'    => $form->createView(),
-            'command' => $command,
-            'result'  => $result,
-        ]);
+        $view = new ViewHandlerTemplate(
+            $this->getTemplate(),
+            $request,
+            [
+                'form'    => $form->createView(),
+                'command' => $command,
+                'result'  => $result,
+            ],
+            $result->getStatus()
+        );
+
         return $this->createResponse($view);
     }
 
@@ -73,6 +80,7 @@ class RegistrationController extends ResourceController implements TemplateAware
 
             $this->executeAutoLogin($user);
             $this->flash($result);
+
             return $this->redirectToRoute('app_homepage');
 
         }
