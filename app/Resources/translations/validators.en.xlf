@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
+  <file date="2017-11-10T12:04:17Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+    <header>
+      <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
+      <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
+    </header>
+    <body>
+      <trans-unit id="a29d6d5aa5131805e60ceac186b93963b5647b68" resname="The password fields must match.">
+        <source>The password fields must match.</source>
+        <target>The password fields must match.</target>
+        <jms:reference-file line="28">/../../../../../src/AppBundle/Form/ResetPasswordType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="7a7c58f76a074a88d94cce62da84d26648f7b4d2" resname="client.name.taken">
+        <source>client.name.taken</source>
+        <target>client.name.taken</target>
+      </trans-unit>
+      <trans-unit id="47cb914844aaaa20b57bd1dacead194f1366d796" resname="user.email.invalid">
+        <source>user.email.invalid</source>
+        <target>user.email.invalid</target>
+      </trans-unit>
+      <trans-unit id="284e08b94e208cf73cd8ef29d8c56f683d8a66fd" resname="user.email.not_blank">
+        <source>user.email.not_blank</source>
+        <target>user.email.not_blank</target>
+      </trans-unit>
+      <trans-unit id="1484377eb566a5fa2897698844eaef14f0f13e36" resname="user.email.taken">
+        <source>user.email.taken</source>
+        <target>user.email.taken</target>
+      </trans-unit>
+      <trans-unit id="7f94691abc82a0be4a311da5b0e04c1133476fdb" resname="user.entity.not_created">
+        <source>user.entity.not_created</source>
+        <target>user.entity.not_created</target>
+      </trans-unit>
+      <trans-unit id="54bbbe18add6cf4d900b3cb540b5145f2cbe37d4" resname="user.entity.not_found">
+        <source>user.entity.not_found</source>
+        <target>user.entity.not_found</target>
+      </trans-unit>
+      <trans-unit id="8b647fd623ad718bba64e6f745ddc7ef11c07c56" resname="user.password.not_blank">
+        <source>user.password.not_blank</source>
+        <target>user.password.not_blank</target>
+      </trans-unit>
+      <trans-unit id="01ca42f5f6bd969ad7a376bd9aa9a1a2d767c0c6" resname="user.usename.not_blank">
+        <source>user.usename.not_blank</source>
+        <target>user.usename.not_blank</target>
+      </trans-unit>
+      <trans-unit id="6c47392171ff2c5bcf789e7cb4eb031940bba01b" resname="user.username.taken">
+        <source>user.username.taken</source>
+        <target>user.username.taken</target>
+      </trans-unit>
+      <trans-unit id="c7adc712d0523141550531a0e31576159d1ccbe9" resname="user.username.too_short">
+        <source>user.username.too_short</source>
+        <target>user.username.too_short</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
