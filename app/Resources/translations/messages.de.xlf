@@ -1,0 +1,905 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff xmlns:jms="urn:jms:translation" xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file date="2017-11-10T12:04:17Z" source-language="en" target-language="de" datatype="plaintext" original="not.available">
+        <header>
+            <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
+            
+            <note>The source node in most cases contains the sample message as written by the developer. If it looks
+                like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a
+                default message.
+            </note>
+            
+        </header>
+        
+        <body>
+            <trans-unit id="ASC" resname="ASC">
+                <source>ASC</source>
+                
+                <target>ASC</target>
+                
+                <jms:reference-file line="28">/../../../../../src/AppBundle/Form/GetCollectionRequestType.php
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="Cancel" resname="Cancel">
+                <source>Cancel</source>
+                
+                <target>Abbruch</target>
+                
+                <jms:reference-file line="4">/../../../../../src/AppBundle/Resources/views/Partials/widgets.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="DESC" resname="DESC">
+                <source>DESC</source>
+                
+                <target>DESC</target>
+                
+                <jms:reference-file line="28">/../../../../../src/AppBundle/Form/GetCollectionRequestType.php
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="Edit" resname="Edit">
+                <source>Edit</source>
+                
+                <target>Bearbeiten</target>
+                
+                <jms:reference-file line="20">/../../../../../src/AppBundle/Resources/views/Audiobook/_panel.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="Hi, %username%" resname="Hi, %username%">
+                <source>Hi, %username%</source>
+                
+                <target>Hi, %username%</target>
+                
+                <jms:reference-file line="6">/../../../../../src/AppBundle/Resources/views/EMail/reset.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="Hi, %username%," resname="Hi, %username%,">
+                <source>Hi, %username%,</source>
+                
+                <target>Hi, %username%,</target>
+                
+                <jms:reference-file line="19">/../../../../../src/AppBundle/Resources/views/EMail/reset.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="If you do not intend to reset your password, you may ignore this email," resname="If you do not intend to reset your password, you may ignore this email,">
+                <source>If you do not intend to reset your password, you may ignore this email,</source>
+                
+                <target>Wenn du nicht beabsichtigst, dein Passwort zurück zu setzen, kannst du diese E-Mail ignorieren.</target>
+                
+                <jms:reference-file line="23">/../../../../../src/AppBundle/Resources/views/EMail/reset.html.twig
+                </jms:reference-file>
+                
+                <jms:reference-file line="9">/../../../../../src/AppBundle/Resources/views/EMail/reset.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="Please use the following link to activate your account:" resname="Please use the following link to activate your account:">
+                <source>Please use the following link to activate your account:</source>
+                
+                <target>Bitte verwende folgenden Link um deinen Account zu aktivieren:</target>
+                
+                <jms:reference-file line="20">/../../../../../src/AppBundle/Resources/views/EMail/register.html.twig
+                </jms:reference-file>
+                
+                <jms:reference-file line="8">/../../../../../src/AppBundle/Resources/views/EMail/register.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="We received a request to reset your password." resname="We received a request to reset your password.">
+                <source>We received a request to reset your password.</source>
+                
+                <target>Wir haben eine Anfrage erhalten, dein Passwort zurück zu setzen.</target>
+                
+                <jms:reference-file line="21">/../../../../../src/AppBundle/Resources/views/EMail/reset.html.twig
+                </jms:reference-file>
+                
+                <jms:reference-file line="7">/../../../../../src/AppBundle/Resources/views/EMail/reset.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="Welcome Aboard, %username%" resname="Welcome Aboard, %username%">
+                <source>Welcome Aboard, %username%</source>
+                
+                <target>Willkommen an Bord, %username%</target>
+                
+                <jms:reference-file line="16">/../../../../../src/AppBundle/Resources/views/EMail/register.html.twig
+                </jms:reference-file>
+                
+                <jms:reference-file line="6">/../../../../../src/AppBundle/Resources/views/EMail/register.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="Your registration process at %appName% is almost complete." resname="Your registration process at %appName% is almost complete.">
+                <source>Your registration process at %appName% is almost complete.</source>
+                
+                <target>Deine Registrierung bei %appName% ist beinahe vollständig.</target>
+                
+                <jms:reference-file line="18">/../../../../../src/AppBundle/Resources/views/EMail/register.html.twig
+                </jms:reference-file>
+                
+                <jms:reference-file line="7">/../../../../../src/AppBundle/Resources/views/EMail/register.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="[%appName%] Hi, %username%! Please activate your account. " resname="[%appName%] Hi, %username%! Please activate your account. ">
+                <source>[%appName%] Hi, %username%! Please activate your account.</source>
+                
+                <target>[%appName%] Hi, %username%! Bitte aktiviere deinen Account.</target>
+                
+                <jms:reference-file line="2">/../../../../../src/AppBundle/Resources/views/EMail/register.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="[%appName%] Password reset request. " resname="[%appName%] Password reset request. ">
+                <source>[%appName%] Password reset request.</source>
+                
+                <target>[%appName%] Password-Zurücksetzen.</target>
+                
+                <jms:reference-file line="2">/../../../../../src/AppBundle/Resources/views/EMail/reset.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="button.cancel" resname="button.cancel">
+                <source>Cancel</source>
+                
+                <target>Abbruch</target>
+                
+                <jms:reference-file line="103">/../../../../../src/AppBundle/Resources/views/Layout/layout.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="button.create_account" resname="button.create_account">
+                <source>Create account</source>
+                
+                <target>Account anlegen</target>
+                
+                <jms:reference-file line="15">
+                    /../../../../../src/AppBundle/Resources/views/Registration/register.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="button.reset_password" resname="button.reset_password">
+                <source>Reset your password</source>
+                
+                <target>Passwort zurücksetzen</target>
+                
+                <jms:reference-file line="10">/../../../../../src/AppBundle/Resources/views/Resetting/index.html.twig
+                </jms:reference-file>
+                
+                <jms:reference-file line="32">/../../../../../src/AppBundle/Resources/views/Security/login.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="button.save" resname="button.save">
+                <source>Save</source>
+                
+                <target>Speichern</target>
+                
+                <jms:reference-file line="10">/../../../../../src/AppBundle/Resources/views/Audiobook/create.html.twig
+                </jms:reference-file>
+                
+                <jms:reference-file line="10">/../../../../../src/AppBundle/Resources/views/Audiobook/edit.html.twig
+                </jms:reference-file>
+                
+                <jms:reference-file line="104">/../../../../../src/AppBundle/Resources/views/Layout/layout.html.twig
+                </jms:reference-file>
+                
+                <jms:reference-file line="10">/../../../../../src/AppBundle/Resources/views/Speaker/create.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="button.signin" resname="button.signin">
+                <source>Sign in</source>
+                
+                <target>Anmelden</target>
+                
+                <jms:reference-file line="42">/../../../../../src/AppBundle/Resources/views/Security/login.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="button.update_password" resname="button.update_password">
+                <source>Update your password</source>
+                
+                <target>Aktualisiere dein Passwort</target>
+                
+                <jms:reference-file line="10">
+                    /../../../../../src/AppBundle/Resources/views/Resetting/change-password.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="heading.change_password" resname="heading.change_password">
+                <source>Change password for %user%</source>
+                
+                <target>Passwort für Benutzer %user% ändern</target>
+                
+                <jms:reference-file line="7">
+                    /../../../../../src/AppBundle/Resources/views/Resetting/change-password.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="heading.edit_audiobook" resname="heading.edit_audiobook">
+                <source>'Edit %model%'</source>
+                
+                <target>%model% bearbeiten</target>
+                
+                <jms:reference-file line="5">/../../../../../src/AppBundle/Resources/views/Audiobook/edit.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="heading.genre" resname="heading.genre">
+                <source>Genre</source>
+                
+                <target>Genre</target>
+                
+                <jms:reference-file line="10">
+                    /../../../../../src/AppBundle/Resources/views/Audiobook/book-meta.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="heading.media" resname="heading.media">
+                <source>Media</source>
+                
+                <target>Medium</target>
+                
+                <jms:reference-file line="31">
+                    /../../../../../src/AppBundle/Resources/views/Audiobook/book-meta.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="heading.metadata" resname="heading.metadata">
+                <source>Metadata</source>
+                
+                <target>Meta-Daten</target>
+                
+                <jms:reference-file line="52">/../../../../../src/AppBundle/Resources/views/Audiobook/show.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="heading.new_audiobook" resname="heading.new_audiobook">
+                <source>Create audiobook</source>
+                
+                <target>Neues Hörbuch</target>
+                
+                <jms:reference-file line="5">/../../../../../src/AppBundle/Resources/views/Audiobook/create.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="heading.new_speaker" resname="heading.new_speaker">
+                <source>New Speaker</source>
+                
+                <target>Neuer Sprecher</target>
+                
+                <jms:reference-file line="5">/../../../../../src/AppBundle/Resources/views/Speaker/create.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="heading.reset_password" resname="heading.reset_password">
+                <source>Reset your password</source>
+                
+                <target>Passwort zurücksetzen</target>
+                
+                <jms:reference-file line="7">/../../../../../src/AppBundle/Resources/views/Resetting/index.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="heading.series" resname="heading.series">
+                <source>Series</source>
+                
+                <target>Serie</target>
+                
+                <jms:reference-file line="14">
+                    /../../../../../src/AppBundle/Resources/views/Audiobook/book-meta.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="heading.sign_in" resname="heading.sign_in">
+                <source>Sign in to %appName%</source>
+                
+                <target>Bei %appName% anmelden</target>
+                
+                <jms:reference-file line="11">/../../../../../src/AppBundle/Resources/views/Security/login.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="heading.sign_up" resname="heading.sign_up">
+                <source>Sign up at %appName%</source>
+                
+                <target>Bei %appName% registrieren</target>
+                
+                <jms:reference-file line="9">
+                    /../../../../../src/AppBundle/Resources/views/Registration/register.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="heading.speaker" resname="heading.speaker">
+                <source>Speaker</source>
+                
+                <target>Sprecher</target>
+                
+                <jms:reference-file line="27">
+                    /../../../../../src/AppBundle/Resources/views/Audiobook/book-meta.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="heading.stats" resname="heading.stats">
+                <source>Statistics</source>
+                
+                <target>Statistik</target>
+                
+                <jms:reference-file line="7">/../../../../../src/AppBundle/Resources/views/Dashboard/index.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="info.author.occurs" resname="info.author.occurs">
+                <source>Occurs %num% times</source>
+                
+                <target>Kommt %num% mal vor</target>
+                
+                <jms:reference-file line="21">/../../../../../src/AppBundle/Resources/views/Author/index.html.twig
+                </jms:reference-file>
+                
+                <jms:reference-file line="21">/../../../../../src/AppBundle/Resources/views/Speaker/index.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="info.genre.occurs" resname="info.genre.occurs">
+                <source>Occurs %num% times</source>
+                
+                <target>Kommt %num% mal vor</target>
+                
+                <jms:reference-file line="23">/../../../../../src/AppBundle/Resources/views/Genre/index.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="info.no_series" resname="info.no_series">
+                <source>No series</source>
+                
+                <target>Keine Serie</target>
+                
+                <jms:reference-file line="19">
+                    /../../../../../src/AppBundle/Resources/views/Audiobook/book-meta.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="info.series.occurs" resname="info.series.occurs">
+                <source>Occurs %num% times</source>
+                
+                <target>Kommt %num% mal vor</target>
+                
+                <jms:reference-file line="21">/../../../../../src/AppBundle/Resources/views/Series/index.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="info.unknonw" resname="info.unknonw">
+                <source>Unknown</source>
+                
+                <target>Unbekannt</target>
+                
+                <jms:reference-file line="12">/../../../../../src/AppBundle/Resources/views/Partials/widgets.html.twig
+                </jms:reference-file>
+                
+                <jms:reference-file line="33">/../../../../../src/AppBundle/Resources/views/Partials/widgets.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="label.audiobook.authors" resname="label.audiobook.authors">
+                <source>Authors</source>
+                
+                <target>Autoren</target>
+                
+                <jms:reference-file line="44">/../../../../../src/AppBundle/Form/AudiobookType.php</jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="label.audiobook.cover_image" resname="label.audiobook.cover_image">
+                <source>Cover image</source>
+                
+                <target>Cover-Bild</target>
+                
+                <jms:reference-file line="36">/../../../../../src/AppBundle/Form/AudiobookType.php</jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="label.audiobook.description" resname="label.audiobook.description">
+                <source>Description</source>
+                
+                <target>Beschreibung</target>
+                
+                <jms:reference-file line="29">/../../../../../src/AppBundle/Form/AudiobookType.php</jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="label.audiobook.genre" resname="label.audiobook.genre">
+                <source>Genre</source>
+                
+                <target>Genre</target>
+                
+                <jms:reference-file line="54">/../../../../../src/AppBundle/Form/AudiobookType.php</jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="label.audiobook.series" resname="label.audiobook.series">
+                <source>Series</source>
+                
+                <target>Serie</target>
+                
+                <jms:reference-file line="58">/../../../../../src/AppBundle/Form/AudiobookType.php</jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="label.audiobook.speakers" resname="label.audiobook.speakers">
+                <source>Speakers</source>
+                
+                <target>Sprecher</target>
+                
+                <jms:reference-file line="49">/../../../../../src/AppBundle/Form/AudiobookType.php</jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="label.audiobook.storage_type" resname="label.audiobook.storage_type">
+                <source>Storage type</source>
+                
+                <target>Speicherort</target>
+                
+                <jms:reference-file line="40">/../../../../../src/AppBundle/Form/AudiobookType.php</jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="label.audiobook.title" resname="label.audiobook.title">
+                <source>Title</source>
+                
+                <target>Titel</target>
+                
+                <jms:reference-file line="25">/../../../../../src/AppBundle/Form/AudiobookType.php</jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="label.author.first_name" resname="label.author.first_name">
+                <source>First name</source>
+                
+                <target>Vorname</target>
+                
+                <jms:reference-file line="24">/../../../../../src/AppBundle/Form/AuthorType.php</jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="label.author.last_name" resname="label.author.last_name">
+                <source>Last name</source>
+                
+                <target>Nachname</target>
+                
+                <jms:reference-file line="28">/../../../../../src/AppBundle/Form/AuthorType.php</jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="label.genre.description" resname="label.genre.description">
+                <source>Description</source>
+                
+                <target>Beschreibung</target>
+                
+                <jms:reference-file line="29">/../../../../../src/AppBundle/Form/GenreType.php</jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="label.genre.name" resname="label.genre.name">
+                <source>Name</source>
+                
+                <target>Name</target>
+                
+                <jms:reference-file line="25">/../../../../../src/AppBundle/Form/GenreType.php</jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="label.registration.email" resname="label.registration.email">
+                <source>Email</source>
+                
+                <target>E-Mail</target>
+                
+                <jms:reference-file line="35">/../../../../../src/AppBundle/Form/RegisterType.php</jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="label.registration.username" resname="label.registration.username">
+                <source>Username</source>
+                
+                <target>Benutzername</target>
+                
+                <jms:reference-file line="30">/../../../../../src/AppBundle/Form/RegisterType.php</jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="label.reset.password" resname="label.reset.password">
+                <source>New password</source>
+                
+                <target>Neues Passwort</target>
+                
+                <jms:reference-file line="32">/../../../../../src/AppBundle/Form/ResetPasswordType.php
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="label.reset.repeat_password" resname="label.reset.repeat_password">
+                <source>Confirm new password</source>
+                
+                <target>Neues Passwort bestätigen</target>
+                
+                <jms:reference-file line="36">/../../../../../src/AppBundle/Form/ResetPasswordType.php
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="label.series.description" resname="label.series.description">
+                <source>Description</source>
+                
+                <target>Beschreibung</target>
+                
+                <jms:reference-file line="29">/../../../../../src/AppBundle/Form/SeriesType.php</jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="label.series.name" resname="label.series.name">
+                <source>Name</source>
+                
+                <target>Name</target>
+                
+                <jms:reference-file line="25">/../../../../../src/AppBundle/Form/SeriesType.php</jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="label.signin.password" resname="label.signin.password">
+                <source>Password</source>
+                
+                <target>Passwort</target>
+                
+                <jms:reference-file line="25">/../../../../../src/AppBundle/Resources/views/Security/login.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="label.signin.username" resname="label.signin.username">
+                <source>Username</source>
+                
+                <target>Benutzername</target>
+                
+                <jms:reference-file line="20">/../../../../../src/AppBundle/Resources/views/Security/login.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="label.speaker.first_name" resname="label.speaker.first_name">
+                <source>First name</source>
+                
+                <target>Vorname</target>
+                
+                <jms:reference-file line="24">/../../../../../src/AppBundle/Form/SpeakerType.php</jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="label.speaker.last_name" resname="label.speaker.last_name">
+                <source>Last name</source>
+                
+                <target>Nachname</target>
+                
+                <jms:reference-file line="28">/../../../../../src/AppBundle/Form/SpeakerType.php</jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="label.username_or_email" resname="label.username_or_email">
+                <source>Username or Email</source>
+                
+                <target>Benutzername oder E-Mail</target>
+                
+                <jms:reference-file line="50">/../../../../../src/AppBundle/Form/UserLookupType.php</jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="loader.message" resname="loader.message">
+                <source>Loading, one moment please.</source>
+                
+                <target>Lade Daten, einen Moment bitte.</target>
+                
+                <jms:reference-file line="112">/../../../../../src/AppBundle/Resources/views/Layout/layout.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="nav.audiobooks" resname="nav.audiobooks">
+                <source>Audiobooks</source>
+                
+                <target>Hörbücher</target>
+                
+                <jms:reference-file line="60">/../../../../../src/AppBundle/Resources/views/Layout/layout.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="nav.authors" resname="nav.authors">
+                <source>Authors</source>
+                
+                <target>Autoren</target>
+                
+                <jms:reference-file line="66">/../../../../../src/AppBundle/Resources/views/Layout/layout.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="nav.logout" resname="nav.logout">
+                <source>Sign out %user%</source>
+                
+                <target>%user% abmelden</target>
+                
+                <jms:reference-file line="69">/../../../../../src/AppBundle/Resources/views/Layout/layout.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="nav.register" resname="nav.register">
+                <source>Register</source>
+                
+                <target>Registrieren</target>
+                
+                <jms:reference-file line="73">/../../../../../src/AppBundle/Resources/views/Layout/layout.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="nav.sign_in" resname="nav.sign_in">
+                <source>Sign in</source>
+                
+                <target>Anmelden</target>
+                
+                <jms:reference-file line="76">/../../../../../src/AppBundle/Resources/views/Layout/layout.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="nav.speakers" resname="nav.speakers">
+                <source>Speakers</source>
+                
+                <target>Sprecher</target>
+                
+                <jms:reference-file line="63">/../../../../../src/AppBundle/Resources/views/Layout/layout.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="otherwise use the following link to reset your password." resname="otherwise use the following link to reset your password.">
+                <source>otherwise use the following link to reset your password.</source>
+                
+                <target>andernfalls verwende den folgenden Link um dein Passwort zurück zu setzen.</target>
+                
+                <jms:reference-file line="10">/../../../../../src/AppBundle/Resources/views/EMail/reset.html.twig
+                </jms:reference-file>
+                
+                <jms:reference-file line="25">/../../../../../src/AppBundle/Resources/views/EMail/reset.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="placeholder.choose_genre" resname="placeholder.choose_genre">
+                <source>Pick a genre</source>
+                
+                <target>Wähle ein Genre</target>
+                
+                <jms:reference-file line="32">/../../../../../src/AppBundle/Form/GenreChoiceType.php
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="placeholder.signin.password" resname="placeholder.signin.password">
+                <source>Your password</source>
+                
+                <target>Dein Passwort</target>
+                
+                <jms:reference-file line="26">/../../../../../src/AppBundle/Resources/views/Security/login.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="placeholder.signin.username" resname="placeholder.signin.username">
+                <source>Your username</source>
+                
+                <target>Dein Benutzername</target>
+                
+                <jms:reference-file line="21">/../../../../../src/AppBundle/Resources/views/Security/login.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="series.choose_genre" resname="series.choose_genre">
+                <source>Pick a series</source>
+                
+                <target>Wähle eine Serie</target>
+                
+                <jms:reference-file line="32">/../../../../../src/AppBundle/Form/SeriesChoiceType.php
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="title.audiobook.details" resname="title.audiobook.details">
+                <source>%model% | %app%</source>
+                
+                <target>%model% | %app%</target>
+                
+                <jms:reference-file line="3">/../../../../../src/AppBundle/Resources/views/Audiobook/show.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="transchoice.author.label" resname="transchoice.author.label">
+                <source>{0}Author|{1}Author|]1,Inf]Authors</source>
+                
+                <target>{0}Autor|{1}Autor|]1,Inf]Autoren</target>
+                
+                <jms:reference-file line="6">
+                    /../../../../../src/AppBundle/Resources/views/Audiobook/book-meta.html.twig
+                </jms:reference-file>
+                
+            </trans-unit>
+            
+            <trans-unit id="user.stats.label" resname="user.stats.label">
+                <source>Number of users</source>
+                
+                <target>Anzahl Benuzter</target>
+                
+            </trans-unit>
+            
+            <trans-unit id="audiobook.stats.label" resname="audiobook.stats.label">
+                <source>Number of audiobooks</source>
+                
+                <target>Anzahl Hörbücher</target>
+                
+            </trans-unit>
+            
+            <trans-unit id="author.stats.label" resname="author.stats.label">
+                <source>Number of authors</source>
+                
+                <target>Anzahl Autoren</target>
+                
+            </trans-unit>
+            
+            <trans-unit id="speaker.stats.label" resname="speaker.stats.label">
+                <source>Number of speakers</source>
+                
+                <target>Anzahl Sprecher</target>
+                
+            </trans-unit>
+            
+            <trans-unit id="genre.stats.label" resname="genre.stats.label">
+                <source>Number of genres</source>
+                
+                <target>Anzahl Genres</target>
+                
+            </trans-unit>
+            
+            <trans-unit id="series.stats.label" resname="series.stats.label">
+                <source>Number of series</source>
+                
+                <target>Anzahl Serine</target>
+                
+            </trans-unit>
+            
+            <trans-unit id="heading.recent_audiobooks" resname="heading.recent_audiobooks">
+                <source>Most recent additions</source>
+                
+                <target>Neueste Beute</target>
+                
+            </trans-unit>
+            
+            <trans-unit id="label.firstName" resname="label.firstName">
+                <source>First nam</source>
+                
+                <target>Vorname</target>
+                
+            </trans-unit>
+            
+            <trans-unit id="label.lastName" resname="label.lastName">
+                <source>Last name</source>
+                
+                <target>Nachname</target>
+                
+            </trans-unit>
+            
+            <trans-unit id="label.id" resname="label.id">
+                <source>ID</source>
+                
+                <target>ID</target>
+                
+            </trans-unit>
+            
+            <trans-unit id="label.canonical" resname="label.canonical">
+                <source>Canonical name</source>
+                
+                <target>Kanonischer Name</target>
+                
+            </trans-unit>
+            
+            <trans-unit id="label.authors" resname="label.authors">
+                <source>Author</source>
+                
+                <target>Autor</target>
+                
+            </trans-unit>
+            
+            <trans-unit id="label.speakers" resname="label.speakers">
+                <source>Speaker</source>
+                
+                <target>Sprecher</target>
+                
+            </trans-unit>
+            
+            <trans-unit id="label.title" resname="label.title">
+                <source>Title</source>
+                
+                <target>Titel</target>
+                
+            </trans-unit>
+            
+            <trans-unit id="label.genre" resname="label.genre">
+                <source>Genre</source>
+                
+                <target>Genre</target>
+                
+            </trans-unit>
+            
+            <trans-unit id="label.series" resname="label.series">
+                <source>Series</source>
+                
+                <target>Serie</target>
+                
+            </trans-unit>
+            
+            <trans-unit id="label.description" resname="label.description">
+                <source>Description</source>
+                
+                <target>Beschreibung</target>
+                
+            </trans-unit>
+            
+        </body>
+        
+    </file>
+    
+</xliff>

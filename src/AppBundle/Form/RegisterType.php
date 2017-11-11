@@ -26,11 +26,13 @@ class RegisterType extends AbstractType
     {
         $builder
             ->add('username', TextType::class, [
-                'label'    => 'label.username',
+                /** @Desc("Username") */
+                'label'    => 'label.registration.username',
                 'required' => true,
             ])
             ->add('email', EmailType::class, [
-                'label'    => 'label.email',
+                /** @Desc("Email") */
+                'label'    => 'label.registration.email',
                 'required' => true,
             ])
             ->add('pass', ResetPasswordType::class, [

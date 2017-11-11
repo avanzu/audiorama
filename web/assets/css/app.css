@@ -42,6 +42,10 @@ body {
     /* box-shadow: 0; */
 }
 
+.cover-image.dashboard {
+    width: 100%;
+    margin: 15px 0;
+}
 .cover-image {
     background: 50% 50% no-repeat;
     background-size: cover;

@@ -8,7 +8,7 @@
             <form action="{{ path('app_security_login') }}" method="post">
         {% endblock %}
 
-        {% block card_title %}{{ 'Sign in to %appName%'|trans({"%appName%" : app_name}) }}{% endblock %}
+        {% block card_title %}{{ 'heading.sign_in'|trans({"%appName%" : app_name})|desc("Sign in to %appName%") }}{% endblock %}
 
         {% block card_content %}
 
@@ -17,19 +17,19 @@
             {% endif %}
 
             <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" placeholder="{{ 'Your username' }}"/>
+                <label for="username">{{ 'label.signin.username'|trans|desc("Username") }}</label>
+                <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" placeholder="{{ 'placeholder.signin.username'|trans|desc("Your username") }}"/>
             </div>
 
             <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="_password" placeholder="{{ 'Your password' }}" />
+                <label for="password">{{ 'label.signin.password'|trans|desc("Password") }}</label>
+                <input type="password" class="form-control" id="password" name="_password" placeholder="{{ 'placeholder.signin.password'|trans|desc("Your password") }}" />
             </div>
 
             {% if error %}
                 <div class="row">
                     <div class="col-sm-12 text-right">
-                        <a href="{{ url('app_reset_index') }}" >Reset password</a>
+                        <a href="{{ url('app_reset_index') }}" >{{ 'button.reset_password'|trans|desc("Reset your password") }}</a>
                     </div>
                 </div>
 
@@ -39,7 +39,7 @@
 
         {% block card_action %}
             <div class="text-right">
-                <button type="submit" class="btn btn-primary">login</button>
+                <button type="submit" class="btn btn-primary">{{ 'button.signin'|trans|desc("Sign in") }}</button>
 
             </div>
         {% endblock %}

@@ -19,8 +19,14 @@ class SpeakerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('firstName', TextType::class)
-            ->add('lastName', TextType::class)
+            ->add('firstName', TextType::class, [
+                /** @Desc("First name") */
+                'label' => 'label.speaker.first_name',
+            ])
+            ->add('lastName', TextType::class,[
+                /** @Desc("Last name") */
+                'label' => 'label.speaker.last_name',
+            ])
             ;
     }
 

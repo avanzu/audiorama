@@ -9,7 +9,7 @@
     {% spaceless %}
         
         {% if speakers|default([])|length < 1 %}
-            {{ 'Unekannt'|trans }}
+            {{ 'info.unknonw'|trans|desc("Unknown") }}
         {% else %}
             
             {% set linked_speakers = [] %}
@@ -30,7 +30,7 @@
     {% spaceless %}
         
         {% if authors|default([])|length < 1 %}
-            {{ 'Unbekannt'|trans }}
+            {{ 'info.unknonw'|trans|desc("Unknown") }}
         {% else %}
             
             {% set linked_authors = [] %}

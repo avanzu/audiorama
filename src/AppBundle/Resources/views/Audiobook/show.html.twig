@@ -1,6 +1,6 @@
 {% extends '@App/Layout/layout.html.twig' %}
 
-{% block title %}{{ '%model% | %app%'|trans({"%model%" : record, "%app%": parent() }) }}{% endblock %}
+{% block title %}{{ 'title.audiobook.details'|trans({"%model%" : record, "%app%": parent() })|desc("%model% | %app%") }}{% endblock %}
 
 {% block search %}{% endblock %}
 
@@ -13,27 +13,6 @@
                     <img class="depth-2 primary img-responsive" src="{{ record.coverImage|default(asset('sound-bars.svg')) }}" alt="{{ record }}">
                 </figure>
             </div>
-    
-    
-            {#
-            <div class="panel panel-default grey">
-                <div class="panel-heading">
-                    {{ 'Autoren'|trans }}
-                </div>
-                <div class="panel-body">
-                    {{ record.authors|join(', ') }}
-                </div>
-            </div>
-    
-            <div class="panel panel-default grey">
-                <div class="panel-heading">
-                    {{ 'Sprecher'|trans }}
-                </div>
-                <div class="panel-body">
-                    {{ record.speakers|join(', ') }}
-                </div>
-            </div>
-            #}
             
         </aside>
         <main class="col-md-8">
@@ -49,7 +28,7 @@
             
             <div class="panel panel-default grey">
                 <div class="panel-heading">
-                    {{'Metadaten'|trans}}
+                    {{'heading.metadata'|trans|desc("Metadata")}}
                 </div>
                 <div class="panel-body">
     

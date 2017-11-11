@@ -27,8 +27,14 @@ class ResetPasswordType extends AbstractType
                 'type'            => PasswordType::class,
                 'invalid_message' => 'The password fields must match.',
                 'required'        => true,
-                'first_options'   => array('label' => 'label.password'),
-                'second_options'  => array('label' => 'label.repeat_password'),
+                'first_options'   => array(
+                    /** @Desc("New password") */
+                    'label' => 'label.reset.password'
+                ),
+                'second_options'  => array(
+                    /** @Desc("Confirm new password") */
+                    'label' => 'label.reset.repeat_password'
+                ),
             ])
             ;
     }

@@ -23,8 +23,8 @@ class ViewHandlerTemplate extends TemplateView
 
     public function __construct($template, Request $request, array $params, $httpStatus = Response::HTTP_OK) {
         parent::__construct($template, $params);
-        $this->request = $request;
-        $this->httpStatus = $httpStatus;
+        $this->request    = $request;
+        $this->httpStatus = $httpStatus < 200 ? Response::HTTP_OK : $httpStatus;
     }
 
     /**

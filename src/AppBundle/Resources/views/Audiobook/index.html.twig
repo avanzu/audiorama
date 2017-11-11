@@ -2,6 +2,9 @@
 {% set _pager %}{{ include('@App/Partials/pager.html.twig') }}{% endset %}
 {% set _sorter %}{{ include('@App/Partials/sorter.html.twig') }}{% endset %}
 
+{% block search %}
+    {% include '@App/Partials/search-bar.html.twig' %}
+{% endblock %}
 
 {% block body %}
 

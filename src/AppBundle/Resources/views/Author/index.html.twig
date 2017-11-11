@@ -18,7 +18,7 @@
                     </div>
                     <div class="panel-footer">
                         <a href="{{ url('app_audiobooks_index', author|authors_term) }}">
-                            {{ 'Tritt %num% mal auf'|trans({"%num%" : author.occurrences }) }}
+                            {{ 'info.author.occurs'|trans({"%num%" : author.occurrences })|desc("Occurs %num% times") }}
                         </a>
 
                     </div>

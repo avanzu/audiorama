@@ -2,12 +2,12 @@
 {% block body %}
     {{ form_start(form) }}
     <div class="panel panel-default">
-        <div class="panel-heading">{{ 'Edit %model%'|trans({"%model%" : model}) }}</div>
+        <div class="panel-heading">{{ 'heading.edit_audiobook'|trans({"%model%" : model})|desc("'Edit %model%'") }}</div>
         <div class="panel-body">
             {{ form_widget(form) }}
         </div>
         <div class="panel-footer">
-            <button type="submit" class="btn btn-primary">{{ 'Save'|trans }}</button>
+            <button type="submit" class="btn btn-primary">{{ 'button.save'|trans|desc("Save") }}</button>
             {{ widget('cancel_button') }}
         </div>
     </div>
