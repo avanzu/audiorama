@@ -51,7 +51,7 @@ body {
     background-size: cover;
     height: 100%;
     min-height: 350px;
-    float:left;
+    /* float:left; */
     overflow : hidden;
 
     -webkit-filter: grayscale(1);
@@ -77,9 +77,11 @@ body {
     padding-bottom: 0;
 }
 
-.audiobook .panel-heading {
+.audiobook .panel-heading a {
     text-overflow: ellipsis;
     white-space: nowrap;
+    display: block;
+    overflow: hidden;
 }
 
 .audiobook .book-content {
