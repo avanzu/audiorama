@@ -199,3 +199,14 @@ body {
     transition: all .5s;
     transform: rotate3d(0, 1, 0, 0deg);
 }
+
+.space-left {
+    margin-left: 1em;
+}
+.space-right {
+    margin-right: 1em;
+}
+
+#audiobook_description{
+    min-height: 350px;
+}

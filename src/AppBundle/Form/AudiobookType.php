@@ -42,20 +42,24 @@ class AudiobookType extends AbstractType
             ->add('authors', AuthorChoiceType::class, [
                 /** @Desc("Authors") */
                 'label' => 'label.audiobook.authors',
-                'multiple' => true
+                'multiple' => true,
+
             ])
             ->add('speakers', SpeakerChoiceType::class, [
                 /** @Desc("Speakers") */
                 'label' => 'label.audiobook.speakers',
-                'multiple' => true
+                'multiple' => true,
+
             ])
             ->add('genre', GenreChoiceType::class, [
                 /** @Desc("Genre") */
                 'label' => 'label.audiobook.genre',
+
             ])
             ->add('series', SeriesChoiceType::class, [
                 /** @Desc("Series") */
                 'label' => 'label.audiobook.series',
+
             ])
         ;
 
@@ -66,6 +70,11 @@ class AudiobookType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Audiobook::class
         ]);
+    }
+
+    public function getBlockPrefix()
+    {
+        return 'audiobook';
     }
 
 

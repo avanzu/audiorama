@@ -10,7 +10,14 @@
 
     <div class="row">
         <div class="col-md-8">{{ _pager }}</div>
-        <div class="col-md-4">{{ _sorter }}</div>
+        <div class="col-md-4">
+            {{ _sorter }}
+            <div class=" pull-right pagination">
+                <a href="{{ path('app_audiobooks_create') }}" class="btn btn-success space-right space-right">
+                    <i class="glyphicon glyphicon-plus space-right"></i>    {{ 'button.create'|trans|desc("Neu") }}
+                </a>
+            </div>
+        </div>
     </div>
 
     <div class="row">
