@@ -58,5 +58,5 @@ security:
             #form_login: ~
     access_control:
                 - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-                - { path: ^/, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
+                - { path: ^/, roles: [ IS_AUTHENTICATED_FULLY ] }
                 - { path: ^/api, roles: [ IS_AUTHENTICATED_FULLY ] }
