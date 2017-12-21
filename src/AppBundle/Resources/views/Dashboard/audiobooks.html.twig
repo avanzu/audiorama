@@ -1,11 +1,17 @@
 <div class="panel panel-default dashboard-panel">
+    <div class="panel-heading">
+        <h3>{{ 'heading.recent_audiobooks'|trans|desc("Most recent additions") }}</h3>
+    </div>
     <div class="panel-body">
         {% for book in records %}
             <div class="hover ">
-                <div class="cover-image col-sm-6  " style="background-image: url({{ book.coverImage|default(asset('sound-bars.svg')) }})">
-                    <div class="description">
-                        {{ book.title }}
+                <div class="col-sm-6">
+                    <div class="cover-image dashboard"  style="background-image: url({{ book.coverImage|default(asset('sound-bars.svg')) }})">
+                        <div class="description">
+                            {{ book.title }}
+                        </div>
                     </div>
+                    
             </div>
             </div>
         {% endfor %}

@@ -20,7 +20,7 @@
 
 
                         <a href="{{ url('app_audiobooks_index', genre|genres_term) }}">
-                            {{ 'Tritt %num% mal auf'|trans({"%num%" : genre.occurrences }) }}
+                            {{ 'info.genre.occurs'|trans({"%num%" : genre.occurrences })|desc("Occurs %num% times") }}
                         </a>
 
                     </div>

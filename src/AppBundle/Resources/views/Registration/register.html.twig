@@ -6,13 +6,13 @@
         {{ form_start(form) }}
     {% endblock %}
 
-    {% block card_title %}{{ 'Sign up at %appName%'|trans({"%appName%" : app_name}) }}{% endblock %}
+    {% block card_title %}{{ 'heading.sign_up'|trans({"%appName%" : app_name})|desc("Sign up at %appName%") }}{% endblock %}
 
     {% block card_content %}{{ form_widget(form) }}{% endblock %}
 
 
     {% block card_action %}
-        <button type="submit" class="btn waves-effect waves-light deep-purple darken-4">Create account</button>
+        <button type="submit" class="btn waves-effect waves-light deep-purple darken-4">{{'button.create_account'|trans|desc("Create account")}}</button>
     {% endblock %}
 
     {% block post_card %} {{ form_end(form ) }} {% endblock %}

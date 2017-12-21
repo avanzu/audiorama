@@ -42,6 +42,10 @@ body {
     /* box-shadow: 0; */
 }
 
+.cover-image.dashboard {
+    width: 100%;
+    margin: 15px 0;
+}
 .cover-image {
     background: 50% 50% no-repeat;
     background-size: cover;
@@ -126,10 +130,8 @@ body {
 }
 
 .placeholder {
-    background-image: url('../img/placeholder.svg');
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
+    background      : url('../img/placeholder.svg') no-repeat center center;
+    background-size : cover;
 }
 
 .cover-image-container img {
@@ -196,4 +198,15 @@ body {
 .book-detail aside figure:hover {
     transition: all .5s;
     transform: rotate3d(0, 1, 0, 0deg);
+}
+
+.space-left {
+    margin-left: 1em;
+}
+.space-right {
+    margin-right: 1em;
+}
+
+#audiobook_description{
+    min-height: 350px;
 }

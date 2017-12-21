@@ -1,0 +1,32 @@
+AppBundle\Entity\Speaker:
+    type: entity
+    # table: books_speaker
+    repositoryClass: AppBundle\Repository\PersonRepository
+    manyToMany:
+        books:
+            targetEntity: AppBundle\Entity\Audiobook
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: speakers
+            inversedBy: null
+            joinTable:
+                name: books_audiobook_speakers
+                schema: null
+                joinColumns:
+                    -
+                        name: speaker_id
+                        unique: false
+                        nullable: true
+                        onDelete: CASCADE
+                        columnDefinition: null
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    -
+                        name: audiobook_id
+                        unique: false
+                        nullable: true
+                        onDelete: CASCADE
+                        columnDefinition: null
+                        referencedColumnName: id
+            orderBy: null
+    lifecycleCallbacks: {  }

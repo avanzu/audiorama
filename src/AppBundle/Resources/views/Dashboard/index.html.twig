@@ -1,14 +1,18 @@
 {% extends '@App/Layout/layout.html.twig' %}
+{% block search %}
+    {% include '@App/Partials/search-bar.html.twig' %}
+{% endblock %}
+
 {% block body %}
 
     <div class="row">
         <div class="col-md-12">
             {% embed '@App/Partials/card.html.twig' %}
-                {% block card_title %}{{ 'Statistik'|trans }}{% endblock %}
+                {% block card_title %}{{ 'heading.stats'|trans|desc("Statistics") }}{% endblock %}
                 {% block card_content %}
                     <dl class="dl-horizontal">
                          {% for resource, nbItems in stats %}
-                             {% set _label = resource ~ '.label' %}
+                             {% set _label = resource ~ '.stats.label' %}
                              <dt>{{ _label|trans }}</dt>
                              <dd>{{ nbItems }}</dd>
                          {% endfor %}

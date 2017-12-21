@@ -16,8 +16,9 @@
             </div>
         </div>
     </div>
+    {% if is_granted('ROLE_ADMIN') %}
     <div class="panel-footer">
         <a class="btn btn-primary" href="{{ url('app_audiobooks_edit', {"canonical" : book.canonical}) }}">{{ 'Edit'|trans }}</a>
     </div>
-
+    {% endif %}
 </div>

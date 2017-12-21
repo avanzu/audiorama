@@ -1,0 +1,52 @@
+AppBundle\Entity\Person:
+    type: entity
+    table: books_person
+    inheritanceType: SINGLE_TABLE
+    discriminatorColumn:
+        name: role
+        type: string
+        length: null
+        columnDefinition: null
+        fieldName: role
+    discriminatorMap:
+        person: AppBundle\Entity\Person
+        author: AppBundle\Entity\Author
+        speaker: AppBundle\Entity\Speaker
+    repositoryClass: AppBundle\Repository\PersonRepository
+    id:
+        id:
+            type: integer
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        firstName:
+            type: string
+            scale: 0
+            length: 255
+            unique: false
+            nullable: false
+            precision: 0
+        lastName:
+            type: string
+            scale: 0
+            length: 255
+            unique: false
+            nullable: false
+            precision: 0
+        canonical:
+            type: string
+            scale: 0
+            length: 255
+            unique: false
+            nullable: true
+            precision: 0
+            gedmo:
+                slug:
+                    fields: [firstName, lastName]
+    lifecycleCallbacks: {  }

@@ -17,25 +17,27 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Class RegisterType
+ */
 class RegisterType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('username', TextType::class, [
-                'label'    => 'label.username',
+                /** @Desc("Username") */
+                'label'    => 'label.registration.username',
                 'required' => true,
             ])
             ->add('email', EmailType::class, [
-                'label'    => 'label.email',
+                /** @Desc("Email") */
+                'label'    => 'label.registration.email',
                 'required' => true,
             ])
-            ->add('plainPassword', RepeatedType::class, [
-                'type'            => PasswordType::class,
-                'invalid_message' => 'The password fields must match.',
-                'required'        => true,
-                'first_options'   => array('label' => 'label.password'),
-                'second_options'  => array('label' => 'label.repeat_password'),
+            ->add('pass', ResetPasswordType::class, [
+                'label'        => false,
+                'inherit_data' => true
             ])
             ;
     }

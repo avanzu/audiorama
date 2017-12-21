@@ -22,8 +22,6 @@ class DashboardController extends Controller
             return $response;
         }
 
-
-
         return $this->render('@App/Dashboard/index.html.twig', [
             'stats' => $this->get('app.manager.stats')->getPublicStats()
         ]);

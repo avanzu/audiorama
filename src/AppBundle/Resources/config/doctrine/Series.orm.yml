@@ -1,0 +1,15 @@
+AppBundle\Entity\Series:
+    type: entity
+    table: books_series
+    repositoryClass: AppBundle\Repository\AttributeRepository
+    oneToMany:
+        books:
+            targetEntity: AppBundle\Entity\Audiobook
+            cascade:
+                - persist
+            fetch: LAZY
+            mappedBy: series
+            inversedBy: null
+            orphanRemoval: false
+            orderBy: null
+    lifecycleCallbacks: {  }

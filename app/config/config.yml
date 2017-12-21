@@ -7,18 +7,22 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
+    locale: de
 
 framework:
     #esi: ~
-    #translator: { fallbacks: ['%locale%'] }
+    translator: { fallbacks: ['%locale%'] }
     secret: '%secret%'
     router:
         resource: '%kernel.root_dir%/config/routing.yml'
         strict_requirements: ~
     form: ~
     csrf_protection: ~
-    validation: { enable_annotations: true }
+    validation:
+        enable_annotations: true
+#        mapping:
+#            paths:
+#                - "@AppBundle/Resources/config/validation"
     #serializer: { enable_annotations: true }
     templating:
         engines: ['twig']
@@ -67,6 +71,10 @@ doctrine:
         auto_generate_proxy_classes: '%kernel.debug%'
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
+        default_repository_class: AppBundle\Repository\ResourceRepository
+        mappings:
+            AppBundle:
+                type: yml
 
 
 # Swiftmailer Configuration
@@ -113,3 +121,29 @@ fos_rest:
 
 jms_serializer:
     enable_short_alias: true
+    metadata:
+        directories:
+            data-access:
+                namespace_prefix: "Components\\DataAccess"
+                path: "@AppBundle/Resources/config/serializer/components/data-access"
+            interactions:
+                namespace_prefix: "Components\\Interaction"
+                path: "@AppBundle/Resources/config/serializer/components/interaction"
+
+app:
+    email:
+        address: noreply@restfully.org
+        alias: RESTFully
+    resources:
+        user:
+            model: AppBundle\Entity\User
+            manager: AppBundle\Manager\UserManager
+        api.client:
+            model: AppBundle\Entity\Api\Client
+        api.auth_code:
+            model: AppBundle\Entity\Api\AuthCode
+        api.access_token:
+            model: AppBundle\Entity\Api\AccessToken
+        api.refresh_token:
+            model: AppBundle\Entity\Api\RefreshToken
+

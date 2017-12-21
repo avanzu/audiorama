@@ -9,9 +9,6 @@ namespace AppBundle\Form;
 
 
 use AppBundle\Entity\Audiobook;
-use AppBundle\Entity\Author;
-use Doctrine\ORM\EntityRepository;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -24,29 +21,44 @@ class AudiobookType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-
+                /** @Desc("Title") */
+                'label' => 'label.audiobook.title'
             ])
             ->add('description', TextareaType::class, [
+                /** @Desc("Description") */
+                'label' => 'label.audiobook.description',
                 'attr' => [
                     'rows' => 15
                 ]
             ])
             ->add('coverImage', ImageUrlType::class, [
-
+                /** @Desc("Cover image") */
+                'label' => 'label.audiobook.cover_image',
             ])
             ->add('storageType', TextType::class, [
-
+                /** @Desc("Storage type") */
+                'label' => 'label.audiobook.storage_type',
             ])
             ->add('authors', AuthorChoiceType::class, [
-                'multiple' => true
+                /** @Desc("Authors") */
+                'label' => 'label.audiobook.authors',
+                'multiple' => true,
+
             ])
             ->add('speakers', SpeakerChoiceType::class, [
-                'multiple' => true
+                /** @Desc("Speakers") */
+                'label' => 'label.audiobook.speakers',
+                'multiple' => true,
+
             ])
             ->add('genre', GenreChoiceType::class, [
+                /** @Desc("Genre") */
+                'label' => 'label.audiobook.genre',
 
             ])
             ->add('series', SeriesChoiceType::class, [
+                /** @Desc("Series") */
+                'label' => 'label.audiobook.series',
 
             ])
         ;
@@ -58,6 +70,11 @@ class AudiobookType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Audiobook::class
         ]);
+    }
+
+    public function getBlockPrefix()
+    {
+        return 'audiobook';
     }
 
 

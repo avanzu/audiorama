@@ -20,8 +20,14 @@ class SeriesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class)
-            ->add('description', TextareaType::class)
+            ->add('name', TextType::class, [
+                /** @Desc("Name") */
+                'label' => 'label.series.name',
+            ])
+            ->add('description', TextareaType::class, [
+                /** @Desc("Description") */
+                'label' => 'label.series.description',
+            ])
         ;
     }
 

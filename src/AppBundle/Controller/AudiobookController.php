@@ -9,6 +9,7 @@ namespace AppBundle\Controller;
 use AppBundle\Form\AudiobookType;
 use AppBundle\Manager\AudiobookManager;
 use AppBundle\Traits\TemplateAware as TemplateTrait;
+use Components\Infrastructure\Presentation\TemplateView;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 

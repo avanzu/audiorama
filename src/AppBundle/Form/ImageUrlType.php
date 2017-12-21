@@ -10,6 +10,7 @@ namespace AppBundle\Form;
 
 use AppBundle\Model\ImageUrlProvider;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
@@ -38,7 +39,7 @@ class ImageUrlType extends AbstractType
      */
     public function getParent()
     {
-        return TextType::class;
+        return TextareaType::class;
     }
 
     public function getBlockPrefix()

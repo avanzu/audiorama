@@ -1,4 +1,5 @@
 imports:
+    - { resource: "container/components.yml" }
     - { resource: "container/controllers.yml" }
     - { resource: "container/serializer.yml" }
     - { resource: "container/devtools.yml" }
@@ -7,6 +8,7 @@ imports:
     - { resource: "container/pagination.yml" }
     - { resource: "container/hateoas.yml" }
     - { resource: "container/twig.yml" }
+    - { resource: "container/presentation.yml" }
 
 parameters:
  #   app.model.user.class: AppBundle\Entity\User

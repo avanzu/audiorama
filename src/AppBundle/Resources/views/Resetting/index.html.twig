@@ -3,16 +3,16 @@
     {% embed '@App/Partials/card.html.twig' %}
 
     {% block pre_card %}{{ form_start(form) }}{% endblock %}
-        
-    {% block card_title %}{{ 'Reset your password'|trans }}{% endblock %}
+    
+    {% block card_title %}{{ 'heading.reset_password'|trans|desc("Reset your password") }}{% endblock %}
     {% block card_content %} {{ form_widget(form) }} {% endblock %}
     {% block card_action %}
-        <button type="submit" class="btn btn-primary">{{ 'Reset your password'|trans }}</button>
+        <button type="submit" class="btn btn-primary">{{ 'button.reset_password'|trans|desc("Reset your password") }}</button>
         {{ widget('cancel_button') }}
     {% endblock %}
-        
+    
     {% block post_card %} {{ form_end(form )}}{% endblock %}
-        
+    
     {% endembed %}
 
 {% endblock %}

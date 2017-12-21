@@ -1,15 +1,17 @@
 <div class="btn-group pull-right pagination">
+    
     {% set _dir  = query.dir|default('asc') is same as ('asc') ? 'desc' : 'asc' %}
+    {% set _label = 'label.' ~ sorted %}
     <a href="{{ url(app.request.get('_route'), query|merge({'dir': _dir } )) }}" class="btn btn-primary">
-        <span class="space-horizontal"><i class="fa fa-sort-alpha-{{ _dir }}"></i></span>  <em>{{ sorted|trans }}</em>
+        <span class="space-horizontal"><i class="fa fa-sort-alpha-{{ _dir }}"></i></span>  <em>{{ _label|trans }}</em>
     </a>
     <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
     <ul class="dropdown-menu">
         {% for field in sortable %}
+            {% set _label = 'label.' ~ field %}
             <li>
                 <a href="{{ url(app.request.get('_route'), query|merge({'sort':field})) }}">
-                    {% if field == sorted %}
-                        <span class="glyphicon glyphicon-ok"></span> {% endif %}{{ field|trans }}
+                    {% if field == sorted %}<span class="glyphicon glyphicon-ok"></span> {% endif %}{{ _label|trans }}
                 </a>
             </li>
         {% endfor %}

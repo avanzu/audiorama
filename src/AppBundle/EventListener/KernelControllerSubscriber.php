@@ -71,7 +71,7 @@ class KernelControllerSubscriber implements EventSubscriberInterface
      */
     protected function configureTemplate($controller, $request)
     {
-        if( ! $controller instanceof TemplateAware ) {
+        if( !$controller instanceof TemplateAware ) {
             return;
         }
 

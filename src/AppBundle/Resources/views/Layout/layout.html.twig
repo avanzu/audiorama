@@ -35,7 +35,6 @@
     <meta name="theme-color" content="#ffffff">
 
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
-
 </head>
 <body>
 
@@ -58,23 +57,23 @@
             <ul class="nav navbar-nav navbar-right">
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     <li>
-                        <a href="{{ url('app_audiobooks_index') }}">{{ 'audiobooks'|trans }}</a>
+                        <a href="{{ url('app_audiobooks_index') }}">{{ 'nav.audiobooks'|trans|desc("Audiobooks") }}</a>
                     </li>
                     <li>
-                        <a href="{{ url('app_speakers_index') }}">{{ 'speakers'|trans }}</a>
+                        <a href="{{ url('app_speakers_index') }}">{{ 'nav.speakers'|trans|desc("Speakers") }}</a>
                     </li>
                     <li>
-                        <a href="{{ url('app_authors_index') }}">{{ 'authors'|trans }}</a>
+                        <a href="{{ url('app_authors_index') }}">{{ 'nav.authors'|trans|desc("Authors") }}</a>
                     </li>
                     <li>
-                        <a href="{{ url('app_security_logout') }}">{{ '%user% '|trans({"%user%" : app.user}) }}</a>
+                        <a href="{{ url('app_security_logout') }}">{{ 'nav.logout'|trans({"%user%" : app.user})|desc("Sign out %user%") }}</a>
                     </li>
                 {% else %}
                     <li>
-                        <a href="{{ url('app_registration_index') }}">{{ 'Register'|trans }}</a>
+                        <a href="{{ url('app_registration_index') }}">{{ 'nav.register'|trans|desc("Register") }}</a>
                     </li>
                     <li>
-                        <a href="{{ url('app_security_login') }}">{{ 'Sign in'|trans }}</a>
+                        <a href="{{ url('app_security_login') }}">{{ 'nav.sign_in'|trans|desc("Sign in") }}</a>
                     </li>
                 {% endif %}
             </ul>
@@ -84,7 +83,6 @@
 </nav>
 
 {% block search %}
-    {% include '@App/Partials/search-bar.html.twig' %}
 {% endblock %}
 
 <div class="container">
@@ -101,8 +99,8 @@
 
             </div>
             <div class="panel-footer">
-                <button class="btn btn-default" data-action="cancel">{{ 'cancel'|trans }}</button>
-                <button class="btn btn-primary" data-action="save">{{ 'save'|trans }}</button>
+                <button class="btn btn-default" data-action="cancel">{{ 'button.cancel'|trans|desc("Cancel") }}</button>
+                <button class="btn btn-primary" data-action="save">{{ 'button.save'|trans|desc("Save") }}</button>
             </div>
         </div>
 
@@ -110,7 +108,7 @@
 </div>
 <script type="text/template" id="loader">
 <div class="alert alert-info">
-    <p>Einen Moment, bitte...</p>
+    <p>{{ 'loader.message'|trans|desc("Loading, one moment please.") }}</p>
 </div>
 </script>
 

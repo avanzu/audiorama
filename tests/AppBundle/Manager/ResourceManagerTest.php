@@ -8,8 +8,12 @@
 namespace AppBundle\Manager;
 
 
+use Components\Resource\Repository\IFactory;
+use Components\Resource\Repository\IRepository;
+use Components\Resource\Validator\IValidator;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
+use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -98,7 +102,7 @@ class ManagedTestObject {
 
 }
 
-class ResourceManagerTest extends \PHPUnit_Framework_TestCase
+class ResourceManagerTest extends TestCase
 {
 
 
@@ -110,8 +114,10 @@ class ResourceManagerTest extends \PHPUnit_Framework_TestCase
 
         $manager = new ResourceManager(
             ManagedTestObject::class,
-            $this->getEntityManager($this->getRepository()),
-            $this->getValidator());
+            $this->getFactory(ManagedTestObject::class),
+            $this->getValidator(),
+            $this->getEntityManager($this->getRepository())
+            );
 
         $object = $manager->createNew();
 
@@ -126,8 +132,10 @@ class ResourceManagerTest extends \PHPUnit_Framework_TestCase
     {
         $manager = new ResourceManager(
             ManagedTestObject::class,
-            $this->getEntityManager($this->getRepository()),
-            $this->getValidator());
+            $this->getFactory(ManagedTestObject::class),
+            $this->getValidator(),
+            $this->getEntityManager($this->getRepository())
+        );
 
         /** @var ManagedTestObject $object */
         $object = $manager->createNew(
@@ -161,8 +169,9 @@ class ResourceManagerTest extends \PHPUnit_Framework_TestCase
 
         $manager = new ResourceManager(
             ManagedTestObject::class,
-            $em->reveal(),
-            $this->getValidator()
+            $this->getFactory(ManagedTestObject::class),
+            $this->getValidator(),
+            $em->reveal()
         );
 
         $manager->save($model);
@@ -183,8 +192,9 @@ class ResourceManagerTest extends \PHPUnit_Framework_TestCase
 
         $manager = new ResourceManager(
             ManagedTestObject::class,
-            $em->reveal(),
-            $this->getValidator()
+            $this->getFactory(ManagedTestObject::class),
+            $this->getValidator(),
+            $em->reveal()
         );
 
         $manager->remove($model);
@@ -193,6 +203,9 @@ class ResourceManagerTest extends \PHPUnit_Framework_TestCase
 
     }
 
+    /**
+     * @return ObjectProphecy|IRepository
+     */
     private function getRepository()
     {
         $repository = $this->prophesize(EntityRepository::class);;
@@ -200,6 +213,23 @@ class ResourceManagerTest extends \PHPUnit_Framework_TestCase
         return $repository;
     }
 
+    /**
+     * @return IFactory
+     */
+    private function getFactory($repository)
+    {
+        /** @var IFactory|ObjectProphecy $factory */
+        $factory = $this->prophesize(IFactory::class);
+        $factory->getRepository(ManagedTestObject::class)->willReturn($repository);
+        return $factory->reveal();
+    }
+
+    /**
+     * @param      $repository
+     * @param bool $reveal
+     *
+     * @return EntityManager|object|ObjectProphecy
+     */
     private function getEntityManager( $repository, $reveal = true )
     {
         /** @var ObjectProphecy|EntityManager $manager */
@@ -210,9 +240,14 @@ class ResourceManagerTest extends \PHPUnit_Framework_TestCase
     }
 
 
+    /**
+     * @param bool $reveal
+     *
+     * @return object|ObjectProphecy|IValidator
+     */
     private function getValidator($reveal = true)
     {
-        $validator = $this->prophesize(ValidatorInterface::class);
+        $validator = $this->prophesize(IValidator::class);
 
         return $reveal ? $validator->reveal() : $validator;
     }
