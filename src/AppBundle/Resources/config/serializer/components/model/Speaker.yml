@@ -1,0 +1,6 @@
+AppBundle\Entity\Speaker:
+    read_only: true
+    properties:
+        books:
+            exclude: true
+            expose: false

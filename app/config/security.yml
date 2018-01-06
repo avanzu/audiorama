@@ -28,9 +28,11 @@ security:
             pattern:    ^/oauth/v2/auth
             form_login:
                  #provider: fos_userbundle
+                 provider: resource
                  check_path: /oauth/v2/auth/login_check
                  login_path: /oauth/v2/auth/login
             anonymous: true
+            logout_on_user_change: true
             # Add your favorite authentication process here
 
         api:
@@ -38,13 +40,17 @@ security:
             fos_oauth:  true
             stateless:  true
             anonymous:  false # can be omitted as its default value
+            logout_on_user_change: true
+            provider: resource
 
         main:
             anonymous: ~
             pattern: ^/
+            logout_on_user_change: true
             form_login:
                 check_path: app_security_login
                 login_path: app_security_login
+                provider: resource
             logout:
                 invalidate_session: true
                 path:   app_security_logout

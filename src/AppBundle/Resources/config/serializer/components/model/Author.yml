@@ -1,0 +1,6 @@
+AppBundle\Entity\Author:
+    read_only: true
+    properties:
+        books:
+            expose: false
+            exlude: true

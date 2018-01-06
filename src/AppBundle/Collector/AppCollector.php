@@ -13,6 +13,8 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\DataCollector\DataCollector;
 
+
+
 class AppCollector extends DataCollector
 {
     /**
@@ -100,4 +102,9 @@ class AppCollector extends DataCollector
     {
         return 'app';
     }
+
+    public function reset() {
+
+    }
+
 }

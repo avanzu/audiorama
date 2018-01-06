@@ -3,9 +3,6 @@
 namespace Components\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
-use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation\VirtualProperty;
 use JMS\Serializer\Annotation\Exclude;
 
@@ -42,6 +39,7 @@ class Person
 
     /**
      * @var ArrayCollection
+     * @Exclude
      */
     protected $books;
 
