@@ -42,11 +42,15 @@ class AppKernel extends Kernel
 
     public function getCacheDir()
     {
+        if( in_array($this->getEnvironment(), ['dev']))
+            return '/dev/shm/audiorama/cache/' . $this->getEnvironment();
         return dirname(__DIR__).'/var/cache/'.$this->getEnvironment();
     }
 
     public function getLogDir()
     {
+        if( in_array($this->getEnvironment(), ['dev']))
+            return '/dev/shm/audiorama/cache/' . $this->getEnvironment();
         return dirname(__DIR__).'/var/logs';
     }
 

@@ -2,16 +2,13 @@
 
 namespace Components\Model;
 
-use AppBundle\Model\ImageUrlProvider;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Audiobook
  *
  */
-class Audiobook
+class Audiobook implements Serializable
 {
     /**
      * @var integer
@@ -450,6 +447,30 @@ class Audiobook
     public function hasImageUrl()
     {
         return $this->hasCoverArt();
+    }
+
+    public function serialize() {
+
+        $mapSerializable = function (Serializable $serializable) {
+            return $serializable->serialize();
+        };
+
+        return [
+            'id'          => $this->id,
+            'canonical'   => $this->canonical,
+            'title'       => $this->title,
+            'description' => $this->description,
+            'episode'     => $this->episode,
+            'createdAt'   => $this->createdAt,
+            'updatedAt'   => $this->updatedAt,
+            'coverImage'  => $this->coverImage,
+            'storageType' => $this->storageType,
+            'genre'       => ($this->genre ? $this->genre->serialize() : NULL),
+            'series'      => ($this->series ? $this->series->serialize() : NULL),
+            'authors'     => $this->authors->map($mapSerializable),
+            'speakers'    => $this->speakers->map($mapSerializable),
+
+        ];
     }
 
 

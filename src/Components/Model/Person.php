@@ -3,14 +3,14 @@
 namespace Components\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use JMS\Serializer\Annotation\VirtualProperty;
 use JMS\Serializer\Annotation\Exclude;
+use JMS\Serializer\Annotation\VirtualProperty;
 
 /**
  * Person
  *
  */
-class Person
+class Person implements Serializable
 {
     const SORT_DEFAULT = 'firstName';
 
@@ -160,5 +160,17 @@ class Person
     {
         return $this->__toString();
     }
+
+    public function serialize() {
+        return [
+            'id'         => $this->id,
+            'first_name' => $this->firstName,
+            'last_name'  => $this->lastName,
+            'canonical'  => $this->canonical,
+            'display'    => $this->getDisplay()
+        ];
+    }
+
+
 }
 

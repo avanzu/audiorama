@@ -3,16 +3,13 @@
 namespace Components\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
 use JMS\Serializer\Annotation\VirtualProperty;
-use JMS\Serializer\Annotation\Exclude;
 
 
 /**
  * Attribute
  */
-class Attribute
+class Attribute implements Serializable
 {
     /**
      * @var integer
@@ -45,6 +42,7 @@ class Attribute
      * @var
      */
     protected $meta;
+
 
     /**
      * Attribute constructor.
@@ -162,6 +160,16 @@ class Attribute
     public function getMeta($key, $default = null)
     {
         return $this->meta->containsKey($key) ? $this->meta->get($key) : $default;
+    }
+
+    public function serialize() {
+        return [
+            'id'          => $this->id,
+            'name'        => $this->name,
+            'canonical'   => $this->canonical,
+            'description' => $this->description,
+            'display'     => $this->getDisplay(),
+        ];
     }
 }
 

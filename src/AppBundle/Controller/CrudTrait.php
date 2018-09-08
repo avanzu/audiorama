@@ -10,6 +10,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Manager\AudiobookManager;
 use AppBundle\Manager\ResourceManager;
+use Components\Model\Serializable;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -73,6 +74,6 @@ trait CrudTrait
         $model = $this->getManager()->getByCanonical($canonical);
         $this->throw404Unless($model);
 
-        return $this->createResponse($request, ['record' => $model]);
+        return $this->createResponse($request, ['record' => $model instanceof Serializable ? $model->serialize() : $model]);
     }
 }
